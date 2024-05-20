@@ -109,7 +109,7 @@ void lab2_2018(){
 
 //------------------------------------------------------------------------------
 // Function: Lab 2 2021
-// Date: 5/16/24
+// Date: 5/20/24
 // Description: a program that asks the user to select a chemical compound from 
 // the following list, printing the selection number and compound name.
 //------------------------------------------------------------------------------
@@ -201,12 +201,62 @@ void lab2_2021(){
 };
 
 //------------------------------------------------------------------------------
-// Function: Lab 3
-// Date: 5/16/24
+// Function: Lab 3 2018
+// Date: 5/20/24
+// Description: a program for processing temperature readings for a period of days
+//------------------------------------------------------------------------------
+void lab3_2018(){
+    int days;
+    cout << "Enter a number of days (1-10) : ";
+    cin >> days;
+
+    while((days <= 1) || (days >= 10)){
+        cout << "Invalid entry! Try again!\n"
+         << "Enter a number of days (1-10): ";
+        cin >> days;
+    }
+
+    int high, low;
+
+    // set intial placeholder values for high and low
+    int highest = -1000;
+    int lowest = 1000;
+
+    float avgHigh = 0.0;
+    float avgLow = 0.0;
+
+    int fDays;
+
+    for(int i = 0; i < days; i++){
+        cout << "Enter Hi and Low for day " << i+1 << " (F): ";
+        cin >> high >> low;
+        if(high > highest){
+            highest = high;
+        }
+        if(low < lowest){
+            lowest = low;
+        }
+        avgHigh += high;
+        avgLow += low;
+        if( low <= 32){
+            fDays++;
+        }
+    }
+    avgHigh /= days;
+    avgLow /= days;
+
+    cout << "The Highs: max = " << highest << " avg = " << avgHigh << endl
+         << "The Lows:  min = " << lowest << " avg = " << avgLow << endl
+         << "Number of days below freezing: " << fDays << endl;
+};
+
+//------------------------------------------------------------------------------
+// Function: Lab 3 2021
+// Date: 5/20/24
 // Description: 
 //------------------------------------------------------------------------------
-void lab3(){
-    
+void lab3_2021(){
+
 };
 
 //------------------------------------------------------------------------------
@@ -302,15 +352,15 @@ void programSelect(){
                     lab1();
                 }
                 else if(prog == "lab2"){
-                    string ver;
-                    cout << "Which version? (2018 or 2021)\n";
-                    cin >> ver;
+                    string ver2;
+                    cout << "Which version of lab 3? (2018 or 2021)\n";
+                    cin >> ver2;
 
-                    if(ver == "2018"){
+                    if(ver2 == "2018"){
                         cout << "Loading \"lab2_2018\"...\n";
                         lab2_2018();
                     }
-                    else if(ver == "2021"){
+                    else if(ver2 == "2021"){
                         cout << "Loading \"lab2_2021\"...\n";
                         lab2_2021();
                     }
@@ -319,8 +369,21 @@ void programSelect(){
                     }
                 }
                 else if(prog == "lab3"){
-                    cout << "Loading \"lab3\"...\n";
-                    //lab3();
+                    string ver3;
+                    cout << "Which version of lab 3? (2018 or 2021)\n";
+                    cin >> ver3;
+
+                    if(ver3 == "2018"){
+                        cout << "Loading \"lab3_2018\"...\n";
+                        lab3_2018();
+                    }
+                    else if(ver3 == "2021"){
+                        cout << "Loading \"lab3_2021\"...\n";
+                        lab3_2021();
+                    }
+                    else{
+                        cout << "Invalid input. Returning to program select\n";
+                    }
                 }
                 else if(prog == "lab4"){
                     cout << "Loading \"lab4\"...\n";
@@ -352,11 +415,11 @@ void programSelect(){
                 }
                 else if(prog == "help"){
                     cout << "Possible inputs:\n"
-                        << "\"help\" - List possible input options\n"
-                        << "\"exit\" - End program\n"
-                        << "\"helloworld\" - Run helloworld program\n"
-                        << "\"lab1\" - Run Lab 1\n"
-                        << "\"lab2\" - Run Lab 2 (2018 or 2021 Edition)\n";
+                         << "\"help\" - List possible input options\n"
+                         << "\"exit\" - End program\n"
+                         << "\"helloworld\" - Run helloworld program\n"
+                         << "\"lab1\" - Run Lab 1\n"
+                         << "\"lab2\" - Run Lab 2 (2018 or 2021 Edition)\n";
                 }
                 else if(prog == "exit"){
                     cout << "Exiting tester mode...\n";
