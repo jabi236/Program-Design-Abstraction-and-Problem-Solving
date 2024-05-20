@@ -24,7 +24,7 @@ void helloworld(){
 //------------------------------------------------------------------------------
 // Function: Lab 1
 // Date: 5/14/24
-// Description: Ask user for name and greet them
+// Description: Ask user for name and greet them.
 //------------------------------------------------------------------------------
 void lab1(){
     string name; // give input to be set as string of user name
@@ -38,7 +38,9 @@ void lab1(){
 //------------------------------------------------------------------------------
 // Function: Lab 2 2018
 // Date: 5/16/24
-// Description: 
+// Description: Write a program that asks the user to enter 3 numbers, one at a 
+// time. Print the three numbers in sorted order. Then display a menu and print 
+// Scoville Units associated with the users's input.
 //------------------------------------------------------------------------------
 void lab2_2018(){
     // Sorted Numbers
@@ -108,10 +110,94 @@ void lab2_2018(){
 //------------------------------------------------------------------------------
 // Function: Lab 2 2021
 // Date: 5/16/24
-// Description: 
+// Description: a program that asks the user to select a chemical compound from 
+// the following list, printing the selection number and compound name.
 //------------------------------------------------------------------------------
 void lab2_2021(){
-    
+    string comp;
+
+    cout << "Compound List:\n"
+         << "1. Water\n"
+         << "2. Mercury\n"
+         << "3. Octane\n"
+         << "4. Ethanol\n"
+         << "Enter Selection: ";
+    cin >> comp;
+
+    int temp;
+    if(comp == "1"){
+        cout << "Selected Compound: Water\n"
+             << "Enter temperature (C): ";
+        cin >> temp;
+        if(temp <= 0){
+            cout << "Water at a temperature of " << temp << " is in a Solid state.";
+        }
+        else if(temp > 0 && temp < 100){
+            cout << "Water at a temperature of " << temp << " is in a Liquid state.";
+        }
+        else if(temp >= 100){
+            cout << "Water at a temperature of " << temp << " is in a Gas state.";
+        }
+    }
+    else if(comp == "2"){
+        cout << "Selected Compound: Mercury\n"
+             << "Enter temperature (C): ";
+        cin >> temp;
+        if(temp <= -39){
+            cout << "Water at a temperature of " << temp << " is in a Solid state.";
+        }
+        else if(temp > -39 && temp < 357){
+            cout << "Water at a temperature of " << temp << " is in a Liquid state.";
+        }
+        else if(temp >= 357){
+            cout << "Water at a temperature of " << temp << " is in a Gas state.";
+        }
+    }
+    else if(comp == "3"){
+        cout << "Selected Compound: Octane\n"
+             << "Enter temperature (C): ";
+        cin >> temp;
+        if(temp <= -57){
+            cout << "Water at a temperature of " << temp << " is in a Solid state.";
+        }
+        else if(temp > -57 && temp < 126){
+            cout << "Water at a temperature of " << temp << " is in a Liquid state.";
+        }
+        else if(temp >= 126){
+            cout << "Water at a temperature of " << temp << " is in a Gas state.";
+        }
+    }
+    else if(comp == "4"){
+        cout << "Selected Compound: Ethanol\n"
+             << "Enter temperature (C): ";
+        cin >> temp;
+        if(temp <= -115){
+            cout << "Water at a temperature of " << temp << " is in a Solid state.";
+        }
+        else if(temp > -115 && temp < 78){
+            cout << "Water at a temperature of " << temp << " is in a Liquid state.";
+        }
+        else if(temp >= 78){
+            cout << "Water at a temperature of " << temp << " is in a Gas state.";
+        }
+    }
+    else{
+        // error message
+        cout << "Invalid Selection, assuming 1 entered\n";
+        // Go through temperture slection of water
+        cout << "Selected Compound: Water\n"
+             << "Enter temperature (C): ";
+        cin >> temp;
+        if(temp <= 0){
+            cout << "Water at a temperature of " << temp << " is in a Solid state.";
+        }
+        else if(temp > 0 && temp < 100){
+            cout << "Water at a temperature of " << temp << " is in a Liquid state.";
+        }
+        else if(temp >= 100){
+            cout << "Water at a temperature of " << temp << " is in a Gas state.";
+        }
+    }
 };
 
 //------------------------------------------------------------------------------
@@ -190,91 +276,112 @@ void lab10(){
 // Function: Program Selection
 // Date: 5/16/24
 // Description: Input loop where a user gives an input of program they want to test
+// TODO: Convert this to onlt choosing between tutor and testing, and move current loop to testing function loop. Also eventually to its own class
 //------------------------------------------------------------------------------
 void programSelect(){
-    string input;
+    string mode;
+    cout << "Select mode (tutor or tester): ";
+    cin >> mode;
+    while(mode != "exit"){
+        if(mode == "tutor"){
+            // error message
+            cout << "Tutor mode not currently available\n";
 
-    cout << "Which program would you like to test?\n";
-    cin >> input;
-    while(input != "exit"){
-        if(input == "helloworld"){
-            cout << "Loading \"helloworld\"\n";
-            helloworld();
         }
-        else if(input == "lab1"){
-            cout << "Loading \"lab1\"...\n";
-            lab1();
-        }
-        else if(input == "lab2"){
-            string ver;
-            cout << "Which version? (2018 or 2021)\n";
-            cin >> ver;
+        else if(mode == "tester"){
+            string prog;
+            cout << "Which program would you like to test?\n";
+            cin >> prog;
+            while(prog != "exit"){
+                if(prog == "helloworld"){
+                    cout << "Loading \"helloworld\"\n";
+                    helloworld();
+                }
+                else if(prog == "lab1"){
+                    cout << "Loading \"lab1\"...\n";
+                    lab1();
+                }
+                else if(prog == "lab2"){
+                    string ver;
+                    cout << "Which version? (2018 or 2021)\n";
+                    cin >> ver;
 
-            if(ver == "2018"){
-                cout << "Loading \"lab2_2018\"...\n";
-                lab2_2018();
+                    if(ver == "2018"){
+                        cout << "Loading \"lab2_2018\"...\n";
+                        lab2_2018();
+                    }
+                    else if(ver == "2021"){
+                        cout << "Loading \"lab2_2021\"...\n";
+                        lab2_2021();
+                    }
+                    else{
+                        cout << "Invalid input. Returning to program select\n";
+                    }
+                }
+                else if(prog == "lab3"){
+                    cout << "Loading \"lab3\"...\n";
+                    //lab3();
+                }
+                else if(prog == "lab4"){
+                    cout << "Loading \"lab4\"...\n";
+                    //lab4();
+                }
+                else if(prog == "lab5"){
+                    cout << "Loading \"lab5\"...\n";
+                    //lab5();
+                }
+                else if(prog == "lab6"){
+                    cout << "Loading \"lab6\"...\n";
+                    //lab6();
+                }
+                else if(prog == "lab7"){
+                    cout << "Loading \"lab7\"...\n";
+                    //lab7();
+                }
+                else if(prog == "lab8"){
+                    cout << "Loading \"lab8\"...\n";
+                    //lab8();
+                }
+                else if(prog == "lab9"){
+                    cout << "Loading \"lab9\"...\n";
+                    //lab9();
+                }
+                else if(prog == "lab10"){
+                    cout << "Loading \"lab10\"...\n";
+                    //lab10();
+                }
+                else if(prog == "help"){
+                    cout << "Possible inputs:\n"
+                        << "\"help\" - List possible input options\n"
+                        << "\"exit\" - End program\n"
+                        << "\"helloworld\" - Run helloworld program\n"
+                        << "\"lab1\" - Run Lab 1\n"
+                        << "\"lab2\" - Run Lab 2 (2018 or 2021 Edition)\n";
+                }
+                else if(prog == "exit"){
+                    cout << "Exiting tester mode...\n";
+                    return;
+                }
+                else{
+                cout << "Invalid input\n";
+                }
+                cout << "\nWhich program would you like to test?\n";
+                cin >> prog;
             }
-            else if(ver == "2021"){
-                cout << "Loading \"lab2_2021\"...\n";
-                lab2_2021();
-            }
-            else{
-                cout << "Invalid input. Returning to program select\n";
-            }
+            cout << "Exiting tester mode...\n";
         }
-        
-        else if(input == "lab3"){
-            cout << "Loading \"lab3\"...\n";
-            //lab3();
-        }
-        else if(input == "lab4"){
-            cout << "Loading \"lab4\"...\n";
-            //lab4();
-        }
-        else if(input == "lab5"){
-            cout << "Loading \"lab5\"...\n";
-            //lab5();
-        }
-        else if(input == "lab6"){
-            cout << "Loading \"lab6\"...\n";
-            //lab6();
-        }
-        else if(input == "lab7"){
-            cout << "Loading \"lab7\"...\n";
-            //lab7();
-        }
-        else if(input == "lab8"){
-            cout << "Loading \"lab8\"...\n";
-            //lab8();
-        }
-        else if(input == "lab9"){
-            cout << "Loading \"lab9\"...\n";
-            //lab9();
-        }
-        else if(input == "lab10"){
-            cout << "Loading \"lab10\"...\n";
-            //lab10();
-        }
-        else if(input == "help"){
-            cout << "Possible inputs:\n"
-                 << "\"help\" - List possible input options\n"
-                 << "\"exit\" - End program\n"
-                 << "\"helloworld\" - Run helloworld program\n"
-                 << "\"lab1\" - Run Lab 1\n"
-                 << "\"lab2\" - Run Lab 2 (2018 or 2021 Edition)\n";
-        }
-        else if(input == "exit"){
-            cout << "Ending Program";
+        else if(mode == "exit"){
+            cout << "Ending Program...\n";
             return;
         }
         else{
             cout << "Invalid input\n";
         }
-        cout << "\nWhich program would you like to test?\n";
-        cin >> input;
+        cout << "Select mode (tutor or tester): ";
+        cin >> mode;
     }
-    cout << "Ending Program";
-    return;
+    cout << "Ending Program...\n";
+    
 };
 int main(){
 
