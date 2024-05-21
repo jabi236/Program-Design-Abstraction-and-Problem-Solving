@@ -7,7 +7,9 @@
 //------------------------------------------------------------------------------
 
 #include <iostream> // needed for cout
+#include <iomanip> // need for setw
 #include <string> // needed for string and getline
+#include <fstream> // for writing and reading to files
 
 using namespace std; // needed for cout and string
 
@@ -252,11 +254,84 @@ void lab3_2018(){
 
 //------------------------------------------------------------------------------
 // Function: Lab 3 2021
-// Date: 5/20/24
-// Description: 
+// Date: 5/21/24
+// Description: a program that asks the user for data on courses for a semester, 
+// calculates the GPA and writes a report to a file as shown below.
 //------------------------------------------------------------------------------
 void lab3_2021(){
+    string fn = "grades.txt";
 
+    ofstream f;
+    f.open(fn);
+    if(f.fail()){
+        cout << "Unable to open file " << fn << endl;
+        return;
+    }
+
+    string sName;
+    cout << "Enter the students name: ";
+    getline(cin, sName);
+
+    // write file header with name given
+    f << "GRADE REPORT FOR: " << sName << endl
+      << "Course   Grd Hrs QPts\n"
+      << "-------- --- --- ----\n";
+
+    string course;
+    cout << "\nEnter Course (or done): ";
+    cin >> course;
+
+    string inputGrade;
+    int hours;
+    int QPV;
+    int QPE;
+    float totQPE = 0.0;
+    float totHours = 0.0;
+    float GPA = 0.0;
+
+    while(course != "done"){
+
+        cout << "Enter number of hours: ";
+        cin >> hours;
+
+        cout << "Enter grade (A,B,C,D,E): ";
+        cin >> inputGrade;
+
+        char grade = toupper(inputGrade[0]);
+
+        if(grade == 'A'){
+            QPV = 4;
+        }
+        else if(grade == 'B'){
+            QPV = 3;
+        }
+        else if(grade == 'C'){
+            QPV = 2;
+        }
+        else if(grade == 'D'){
+            QPV = 1;
+        }
+        else{
+            QPV = 0;
+        }
+        QPE = QPV * hours;
+        totQPE += QPE;
+        totHours += hours;
+
+        f << setw(8) << left << course << setw(3) << right << grade << setw(5) << right << hours << setw(5) << right << QPE << endl;;
+
+        cout << "\nEnter Course (or done): ";
+        cin >> course;
+    }
+
+    GPA = totQPE / totHours;
+
+    f << "-------- --- --- ----\n"
+      << "Overall:" << setw(8) << totHours << setw(5) << totQPE << "  GPA: " << fixed << setprecision(2) << GPA;
+
+    f.close();
+
+    cout << "Grade report written to " << fn << endl;
 };
 
 //------------------------------------------------------------------------------
@@ -344,10 +419,12 @@ void programSelect(){
             cin >> prog;
             while(prog != "exit"){
                 if(prog == "helloworld"){
+                    cin.ignore();
                     cout << "Loading \"helloworld\"\n";
                     helloworld();
                 }
                 else if(prog == "lab1"){
+                    cin.ignore();
                     cout << "Loading \"lab1\"...\n";
                     lab1();
                 }
@@ -358,10 +435,12 @@ void programSelect(){
 
                     if(ver2 == "2018"){
                         cout << "Loading \"lab2_2018\"...\n";
+                        cin.ignore();
                         lab2_2018();
                     }
                     else if(ver2 == "2021"){
                         cout << "Loading \"lab2_2021\"...\n";
+                        cin.ignore();
                         lab2_2021();
                     }
                     else{
@@ -375,10 +454,12 @@ void programSelect(){
 
                     if(ver3 == "2018"){
                         cout << "Loading \"lab3_2018\"...\n";
+                        cin.ignore();
                         lab3_2018();
                     }
                     else if(ver3 == "2021"){
                         cout << "Loading \"lab3_2021\"...\n";
+                        cin.ignore();
                         lab3_2021();
                     }
                     else{
