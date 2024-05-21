@@ -1,0 +1,11 @@
+GRADE REPORT FOR: Ayo E
+Course   Grd Hrs QPts
+-------- --- --- ----
+CS215     A    4   16
+KHS101    E    1    0
+CHEM101   B    4   12
+ART222    D    2    2
+EGR101    ?    1    0
+EGR102    C    2    4
+-------- --- --- ----
+Overall:      14   34  GPA: 2.43
