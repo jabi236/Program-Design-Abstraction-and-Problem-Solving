@@ -108,7 +108,6 @@ void lab2_2018(){
     }
 };
 
-
 //------------------------------------------------------------------------------
 // Function: Lab 2 2021
 // Date: 5/20/24
@@ -340,7 +339,7 @@ void lab3_2021(){
 // Description: 
 //------------------------------------------------------------------------------
 void lab4(){
-    
+    cout << "This lab is currently not available\n";
 };
 
 //------------------------------------------------------------------------------
@@ -349,7 +348,7 @@ void lab4(){
 // Description: 
 //------------------------------------------------------------------------------
 void lab5(){
-    
+    cout << "This lab is currently not available\n";
 };
 
 //------------------------------------------------------------------------------
@@ -358,7 +357,7 @@ void lab5(){
 // Description: 
 //------------------------------------------------------------------------------
 void lab6(){
-    
+    cout << "This lab is currently not available\n";
 };
 
 //------------------------------------------------------------------------------
@@ -367,7 +366,7 @@ void lab6(){
 // Description: 
 //------------------------------------------------------------------------------
 void lab7(){
-    
+    cout << "This lab is currently not available\n";
 };
 
 //------------------------------------------------------------------------------
@@ -376,7 +375,7 @@ void lab7(){
 // Description: 
 //------------------------------------------------------------------------------
 void lab8(){
-    
+    cout << "This lab is currently not available\n";
 };
 
 //------------------------------------------------------------------------------
@@ -385,7 +384,7 @@ void lab8(){
 // Description: 
 //------------------------------------------------------------------------------
 void lab9(){
-    
+    cout << "This lab is currently not available\n";
 };
 
 //------------------------------------------------------------------------------
@@ -394,7 +393,18 @@ void lab9(){
 // Description: 
 //------------------------------------------------------------------------------
 void lab10(){
-    
+    cout << "This lab is currently not available\n";
+};
+
+//------------------------------------------------------------------------------
+//                              Project 1 - 2018
+//------------------------------------------------------------------------------
+// Author: James Birch
+// Date: 5/21/24
+// Description: 
+//------------------------------------------------------------------------------
+void proj1_2018(){
+    cout << "This version is currently not available\n";
 };
 
 //------------------------------------------------------------------------------
@@ -590,6 +600,146 @@ void proj1_2021(){
 };
 
 //------------------------------------------------------------------------------
+// Function: Tutor Mode
+// Date: 5/22/24
+// Description: Ask questions to test knowledge on programming basics
+//------------------------------------------------------------------------------
+void tutorMode(){
+    cout << "Tutor mode not currently available\n";
+};
+//------------------------------------------------------------------------------
+// Function: Tutor Mode
+// Date: 5/22/24
+// Description: Input loop where a user gives an input of program they want to test
+//------------------------------------------------------------------------------
+void testerMode(){
+    string prog;
+    cout << "Which program would you like to test?\n";
+    cin >> prog;
+    while(prog != "exit"){
+        if(prog == "helloworld"){
+            cin.ignore();
+            cout << "Loading \"helloworld\"\n";
+            helloworld();
+        }
+        else if(prog == "lab1"){
+            cin.ignore();
+            cout << "Loading \"lab1\"...\n";
+            lab1();
+        }
+        else if(prog == "lab2"){
+            string ver2;
+            cout << "Which version of lab 3? (2018 or 2021)\n";
+            cin >> ver2;
+
+            if(ver2 == "2018"){
+                cout << "Loading \"lab2_2018\"...\n";
+                cin.ignore();
+                lab2_2018();
+            }
+            else if(ver2 == "2021"){
+                cout << "Loading \"lab2_2021\"...\n";
+                cin.ignore();
+                lab2_2021();
+            }
+            else{
+                cout << "Invalid input. Returning to program select\n";
+            }
+        }
+        else if(prog == "lab3"){
+            string ver3;
+            cout << "Which version of lab 3? (2018 or 2021)\n";
+            cin >> ver3;
+
+            if(ver3 == "2018"){
+                cout << "Loading \"lab3_2018\"...\n";
+                cin.ignore();
+                lab3_2018();
+            }
+            else if(ver3 == "2021"){
+                cout << "Loading \"lab3_2021\"...\n";
+                cin.ignore();
+                lab3_2021();
+            }
+            else{
+                cout << "Invalid input. Returning to program select\n";
+            }
+        }
+        else if(prog == "lab4"){
+            cout << "Loading \"lab4\"...\n";
+            cin.ignore();
+            lab4();
+        }
+        else if(prog == "lab5"){
+            cout << "Loading \"lab5\"...\n";
+            cin.ignore();
+            lab5();
+        }
+        else if(prog == "lab6"){
+            cout << "Loading \"lab6\"...\n";
+            cin.ignore();
+            lab6();
+        }
+        else if(prog == "lab7"){
+            cout << "Loading \"lab7\"...\n";
+            cin.ignore();
+            lab7();
+        }
+        else if(prog == "lab8"){
+            cout << "Loading \"lab8\"...\n";
+            cin.ignore();
+            lab8();
+        }
+        else if(prog == "lab9"){
+            cout << "Loading \"lab9\"...\n";
+            cin.ignore();
+            lab9();
+        }
+        else if(prog == "lab10"){
+            cout << "Loading \"lab10\"...\n";
+            cin.ignore();
+            lab10();
+        }
+        else if(prog == "proj1"){
+            string verP1;
+            cout << "Which version of project 1? (2018 or 2021)\n";
+            cin >> verP1;
+
+            if(verP1 == "2018"){
+                cout << "Loading \"proj1_2018\"...\n";
+                cin.ignore();
+                proj1_2018();
+            }
+            else if(verP1 == "2021"){
+                cout << "Loading \"proj1_2021\"...\n";
+                cin.ignore();
+                proj1_2021();
+            }
+            else{
+                cout << "Invalid input. Returning to program select\n";
+            }
+        }
+        else if(prog == "help"){
+            cout << "Possible inputs:\n"
+                 << "\"help\" - List possible input options\n"
+                 << "\"exit\" - End program\n"
+                 << "\"helloworld\" - Run helloworld program\n"
+                 << "\"lab1\" - Run Lab 1\n"
+                 << "\"lab2\" - Run Lab 2 (2018 or 2021 Edition)\n"
+                 << "\"lab3\" - Run Lab 3 (2018 or 2021 Edition)\n"
+                 << "\"proj1\" - Run Project 1 (2018 or 2021 Edition)\n";
+        }
+        else{
+            cout << "Invalid input\n";
+        }
+        cout << "\nWhich program would you like to test?\n";
+        cin >> prog;
+    }
+    cout << "Exiting tester mode...\n";
+    return;
+};
+
+//------------------------------------------------------------------------------
 // Function: Program Selection
 // Date: 5/16/24
 // Description: Input loop where a user gives an input of program they want to test
@@ -601,150 +751,10 @@ void programSelect(){
     cin >> mode;
     while(mode != "exit"){
         if(mode == "tutor"){
-            // error message
-            cout << "Tutor mode not currently available\n";
-
+            tutorMode();
         }
         else if(mode == "tester"){
-            string prog;
-            cout << "Which program would you like to test?\n";
-            cin >> prog;
-            while(prog != "exit"){
-                if(prog == "helloworld"){
-                    cin.ignore();
-                    cout << "Loading \"helloworld\"\n";
-                    helloworld();
-                }
-                else if(prog == "lab1"){
-                    cin.ignore();
-                    cout << "Loading \"lab1\"...\n";
-                    lab1();
-                }
-                else if(prog == "lab2"){
-                    string ver2;
-                    cout << "Which version of lab 3? (2018 or 2021)\n";
-                    cin >> ver2;
-
-                    if(ver2 == "2018"){
-                        cout << "Loading \"lab2_2018\"...\n";
-                        cin.ignore();
-                        lab2_2018();
-                    }
-                    else if(ver2 == "2021"){
-                        cout << "Loading \"lab2_2021\"...\n";
-                        cin.ignore();
-                        lab2_2021();
-                    }
-                    else{
-                        cout << "Invalid input. Returning to program select\n";
-                    }
-                }
-                else if(prog == "lab3"){
-                    string ver3;
-                    cout << "Which version of lab 3? (2018 or 2021)\n";
-                    cin >> ver3;
-
-                    if(ver3 == "2018"){
-                        cout << "Loading \"lab3_2018\"...\n";
-                        cin.ignore();
-                        lab3_2018();
-                    }
-                    else if(ver3 == "2021"){
-                        cout << "Loading \"lab3_2021\"...\n";
-                        cin.ignore();
-                        lab3_2021();
-                    }
-                    else{
-                        cout << "Invalid input. Returning to program select\n";
-                    }
-                }
-                else if(prog == "lab4"){
-                    cout << "This lab is currently not available\n";
-                    //cout << "Loading \"lab4\"...\n";
-                    //cin.ignore();
-                    //lab4();
-                }
-                else if(prog == "lab5"){
-                    cout << "This lab is currently not available\n";
-                    //cout << "Loading \"lab5\"...\n";
-                    //cin.ignore();
-                    //lab5();
-                }
-                else if(prog == "lab6"){
-                    cout << "This lab is currently not available\n";
-                    //cout << "Loading \"lab6\"...\n";
-                    //cin.ignore();
-                    //lab6();
-                }
-                else if(prog == "lab7"){
-                    cout << "This lab is currently not available\n";
-                    //cout << "Loading \"lab7\"...\n";
-                    //cin.ignore();
-                    //lab7();
-                }
-                else if(prog == "lab8"){
-                    cout << "This lab is currently not available\n";
-                    //cout << "Loading \"lab8\"...\n";
-                    //cin.ignore();
-                    //lab8();
-                }
-                else if(prog == "lab9"){
-                    cout << "This lab is currently not available\n";
-                    //cout << "Loading \"lab9\"...\n";
-                    //cin.ignore();
-                    //lab9();
-                }
-                else if(prog == "lab10"){
-                    cout << "This lab is currently not available\n";
-                    //cout << "Loading \"lab10\"...\n";
-                    //cin.ignore();
-                    //lab10();
-                }
-                else if(prog == "proj1"){
-                    string verP1;
-                    cout << "Which version of project 1? (2018 or 2021)\n";
-                    cin >> verP1;
-
-                    if(verP1 == "2018"){
-                        cout << "This version is currently not available\n";
-                        //cout << "Loading \"proj1_2018\"...\n";
-                        //cin.ignore();
-                        //proj1_2018();
-                    }
-                    else if(verP1 == "2021"){
-                        cout << "Loading \"proj1_2021\"...\n";
-                        cin.ignore();
-                        proj1_2021();
-                    }
-                    else{
-                        cout << "Invalid input. Returning to program select\n";
-                    }
-                }
-                else if(prog == "help"){
-                    cout << "Possible inputs:\n"
-                         << "\"help\" - List possible input options\n"
-                         << "\"exit\" - End program\n"
-                         << "\"helloworld\" - Run helloworld program\n"
-                         << "\"lab1\" - Run Lab 1\n"
-                         << "\"lab2\" - Run Lab 2 (2018 or 2021 Edition)\n"
-                         << "\"lab3\" - Run Lab 3 (2018 or 2021 Edition)\n"
-                         << "\"proj1\" - Run Project 1 (2018 or 2021 Edition)\n";
-                }
-                else if(prog == "exit"){
-                    cout << "Exiting tester mode...\n";
-                    return;
-                }
-                else{
-                cout << "Invalid input\n";
-                }
-                cout << "\nWhich program would you like to test?\n";
-                cin >> prog;
-            }
-            cout << "Exiting tester mode...\n";
-        }
-        else if(mode == "exit"){
-            cout << "Ending Program...\n";
-            return;
+            testerMode();
         }
         else{
             cout << "Invalid input\n";
@@ -753,6 +763,7 @@ void programSelect(){
         cin >> mode;
     }
     cout << "Ending Program...\n";
+    return;
     
 };
 int main(){
