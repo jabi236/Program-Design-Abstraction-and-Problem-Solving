@@ -379,10 +379,10 @@ void lab4(){
 
     }
 
-    float maxQ = -1000000.0;
-    float minQ = 1000000.0;
+    float maxQ = avgQs[0];
+    float minQ = avgQs[0];
     // find max and min averages
-    for(int k = 0; k < numQuiz; k++){
+    for(int k = 1; k < numQuiz; k++){
         if(avgQs[k] > maxQ){
             maxQ = avgQs[k];
         }
@@ -674,7 +674,7 @@ void tutorMode(){
 //------------------------------------------------------------------------------
 void testerMode(){
     string prog;
-    cout << "Enter program to test: ";
+    cout << "Enter program to test (or exit): ";
     cin >> prog;
     while(prog != "exit"){
         if(prog == "helloworld"){
@@ -782,7 +782,7 @@ void testerMode(){
         else if(prog == "help"){
             cout << "Possible inputs:\n"
                  << "\"help\" - List possible input options\n"
-                 << "\"exit\" - End program\n"
+                 << "\"exit\" - Exit tester mode\n"
                  << "\"helloworld\" - Run helloworld program\n"
                  << "\"lab1\" - Run Lab 1\n"
                  << "\"lab2\" - Run Lab 2 (2018 or 2021 Edition)\n"
@@ -807,7 +807,8 @@ void testerMode(){
 //------------------------------------------------------------------------------
 void modeSelect(){
     string mode;
-    cout << "Select mode (tutor, tester, or done): ";
+    cout << "Enter help if you want to know the options\n";
+    cout << "Select mode (tutor or tester): ";
     cin >> mode;
     while(mode != "done"){
         if(mode == "tutor"){
@@ -815,6 +816,13 @@ void modeSelect(){
         }
         else if(mode == "tester"){
             testerMode();
+        }
+        else if(mode == "help"){
+            cout << "Possible inputs:\n"
+                 << "\"help\" - List possible input options\n"
+                 << "\"done\" - End program\n"
+                 << "\"tester\" - Enter mode to test programs\n"
+                 << "\"tutor\" - Enter mode to learn and test coding knowledge\n";
         }
         else{
             cout << "Invalid input\n";
