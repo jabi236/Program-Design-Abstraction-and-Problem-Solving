@@ -339,7 +339,67 @@ void lab3_2021(){
 // Description: 
 //------------------------------------------------------------------------------
 void lab4(){
-    cout << "This lab is currently not available\n";
+    const int MAX_STU = 20;
+    const int MAX_QUIZ = 10;
+
+    string students[MAX_STU];
+    float avgQs[MAX_QUIZ];
+
+    int numStu = 0;
+    int numQuiz = 0;
+
+    cout << setw(33) << left << "Enter number of students (1-20): ";
+    cin >> numStu;
+
+    cout << setw(33) << left << "Enter number of quizzes (1-10): ";
+    cin >> numQuiz;
+
+    cout << endl;
+
+    string nameStu = "";
+    // enter data for student name and their average quiz scores
+    for(int i = 0; i < numStu; i++){
+        float qScore = 0.0;
+        float totQScores = 0.0;
+        float avgQ = 0.0;
+
+        cout << setw(20) << left << "Enter student name: ";
+        if (cin.peek() == '\n') cin.ignore(); // clear cin for getline
+        getline(cin, nameStu);
+
+        students[i] = nameStu;
+
+        for(int j = 0; j < numQuiz; j++){
+            cout << "Enter score " << j+1 << setw(7) << left << ":";
+            cin >> qScore;
+            totQScores += qScore;
+        }
+        avgQ = (totQScores / numQuiz);
+        avgQs[i] = avgQ;
+
+    }
+
+    float maxQ = -1000000.0;
+    float minQ = 1000000.0;
+    // find max and min averages
+    for(int k = 0; k < numQuiz; k++){
+        if(avgQs[k] > maxQ){
+            maxQ = avgQs[k];
+        }
+        if(avgQs[k] < minQ){
+            minQ = avgQs[k];
+        }
+    }
+
+    cout << fixed << setprecision(1);
+    //print report
+    for(int l = 0; l < numStu; l++){
+        cout << setw(19) << left << students[l] << setw(5) << right << avgQs[l] << endl;
+    }
+    cout << setw(20) << left << "Highest Average:" << maxQ << endl;
+    cout << setw(20) << left << "Lowest Average:" << minQ << endl;
+
+    return;
 };
 
 //------------------------------------------------------------------------------
@@ -614,7 +674,7 @@ void tutorMode(){
 //------------------------------------------------------------------------------
 void testerMode(){
     string prog;
-    cout << "Which program would you like to test?\n";
+    cout << "Enter program to test: ";
     cin >> prog;
     while(prog != "exit"){
         if(prog == "helloworld"){
@@ -629,7 +689,7 @@ void testerMode(){
         }
         else if(prog == "lab2"){
             string ver2;
-            cout << "Which version of lab 3? (2018 or 2021)\n";
+            cout << "Select version of lab 2 (2018 or 2021): ";
             cin >> ver2;
 
             if(ver2 == "2018"){
@@ -648,7 +708,7 @@ void testerMode(){
         }
         else if(prog == "lab3"){
             string ver3;
-            cout << "Which version of lab 3? (2018 or 2021)\n";
+            cout << "Select version of lab 3 (2018 or 2021): ";
             cin >> ver3;
 
             if(ver3 == "2018"){
@@ -702,7 +762,7 @@ void testerMode(){
         }
         else if(prog == "proj1"){
             string verP1;
-            cout << "Which version of project 1? (2018 or 2021)\n";
+            cout << "Select version of project 1 (2018 or 2021): ";
             cin >> verP1;
 
             if(verP1 == "2018"){
@@ -732,7 +792,7 @@ void testerMode(){
         else{
             cout << "Invalid input\n";
         }
-        cout << "\nWhich program would you like to test?\n";
+        cout << "\nEnter program to test: ";
         cin >> prog;
     }
     cout << "Exiting tester mode...\n";
@@ -745,11 +805,11 @@ void testerMode(){
 // Description: Input loop where a user gives an input of program they want to test
 // TODO: Convert this to onlt choosing between tutor and testing, and move current loop to testing function loop. Also eventually to its own class
 //------------------------------------------------------------------------------
-void programSelect(){
+void modeSelect(){
     string mode;
-    cout << "Select mode (tutor or tester): ";
+    cout << "Select mode (tutor, tester, or done): ";
     cin >> mode;
-    while(mode != "exit"){
+    while(mode != "done"){
         if(mode == "tutor"){
             tutorMode();
         }
@@ -764,11 +824,17 @@ void programSelect(){
     }
     cout << "Ending Program...\n";
     return;
-    
 };
+
+//------------------------------------------------------------------------------
+// Function: Main
+// Date: 5/16/24
+// Description: Enter mode selection function
+// TODO: Move to its own class
+//------------------------------------------------------------------------------
 int main(){
 
-    programSelect();
+    modeSelect();
 
     return 0;
 };
