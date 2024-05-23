@@ -1,10 +1,12 @@
-//------------------------------------------------------------------------------
-//                      Coding Tester and Tutor
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+//                                                      Coding Tester and Tutor
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Author: James Birch
 // Date: 5/16/24
-// Description: T
-//------------------------------------------------------------------------------
+// Description: Program to test my old C++ programs from my intro class and also learn with questions about coding concepts and specific lines of 
+// code.
+// TODO: Use OOP to divide most of functions into own files to not have just 1 long messy file
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 
 #include <iostream> // needed for cout
 #include <iomanip> // need for setw
@@ -13,23 +15,26 @@
 
 using namespace std; // needed for cout and string
 
-//------------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+//                                                               Labs
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Hello World
 // Date: 5/14/24
 // Description: The computer talks
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 void helloworld(){
     cout << "Hello World!\n";
     //system("pause");
 };
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 1
 // Date: 5/14/24
 // Description: Ask user for name and greet them.
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab1(){
-    string name; // give input to be set as string of user name
+    string name = ""; // give input to be set as string of user name
 
     cout << "Hello! What is your name?\n";
     cin >> name; // get input
@@ -37,18 +42,17 @@ void lab1(){
     cout << "Greetings " << name << "!\n";
 };
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 2 2018
 // Date: 5/16/24
-// Description: Write a program that asks the user to enter 3 numbers, one at a 
-// time. Print the three numbers in sorted order. Then display a menu and print 
-// Scoville Units associated with the users's input.
-//------------------------------------------------------------------------------
+// Description: Write a program that asks the user to enter 3 numbers, one at a time. Print the three numbers in sorted order. Then display a menu 
+// and print Scoville Units associated with the users's input.
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab2_2018(){
     // Sorted Numbers
     const int NUMS_SIZE = 3;
     int nums[NUMS_SIZE];
-    int num1, num2, num3; 
+    int num1, num2, num3 = 0; 
 
     cout << "Enter a Number 1: ";
     cin >> num1;
@@ -76,7 +80,7 @@ void lab2_2018(){
          << nums[2] << endl << endl;
 
     // Pepper Index
-    string pepper;
+    string pepper = "";
     int sco_ale = 30000;
     int sco_ban = 1000;
     int sco_cay = 40000;
@@ -108,14 +112,13 @@ void lab2_2018(){
     }
 };
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 2 2021
 // Date: 5/20/24
-// Description: a program that asks the user to select a chemical compound from 
-// the following list, printing the selection number and compound name.
-//------------------------------------------------------------------------------
+// Description: a program that asks the user to select a chemical compound from the following list, printing the selected number and compound name.
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab2_2021(){
-    string comp;
+    string comp = "";
 
     cout << "Compound List:\n"
          << "1. Water\n"
@@ -125,7 +128,7 @@ void lab2_2021(){
          << "Enter Selection: ";
     cin >> comp;
 
-    int temp;
+    int temp = 0;
     if(comp == "1"){
         cout << "Selected Compound: Water\n"
              << "Enter temperature (C): ";
@@ -201,13 +204,13 @@ void lab2_2021(){
     }
 };
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 3 2018
 // Date: 5/20/24
 // Description: a program for processing temperature readings for a period of days
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab3_2018(){
-    int days;
+    int days = 0;
     cout << "Enter a number of days (1-10) : ";
     cin >> days;
 
@@ -217,7 +220,7 @@ void lab3_2018(){
         cin >> days;
     }
 
-    int high, low;
+    int high, low = 0;
 
     // set intial placeholder values for high and low
     int highest = -1000;
@@ -226,7 +229,7 @@ void lab3_2018(){
     float avgHigh = 0.0;
     float avgLow = 0.0;
 
-    int fDays;
+    int fDays = 0;
 
     for(int i = 0; i < days; i++){
         cout << "Enter Hi and Low for day " << i+1 << " (F): ";
@@ -251,12 +254,11 @@ void lab3_2018(){
          << "Number of days below freezing: " << fDays << endl;
 };
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 3 2021
 // Date: 5/21/24
-// Description: a program that asks the user for data on courses for a semester, 
-// calculates the GPA and writes a report to a file as shown below.
-//------------------------------------------------------------------------------
+// Description: a program that asks the user for data on courses for a semester, calculates the GPA and writes a report to a file as shown below.
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab3_2021(){
     string fn = "grades.txt";
 
@@ -267,7 +269,7 @@ void lab3_2021(){
         return;
     }
 
-    string sName;
+    string sName = "";
     cout << "Enter the students name: ";
     getline(cin, sName);
 
@@ -276,14 +278,14 @@ void lab3_2021(){
       << "Course   Grd Hrs QPts\n"
       << "-------- --- --- ----\n";
 
-    string course;
+    string course = "";
     cout << "\nEnter Course (or done): ";
     cin >> course;
 
-    string inputGrade;
-    int hours;
-    int QPV;
-    int QPE;
+    string inputGrade = "";
+    int hours = 0;
+    int QPV = 0;
+    int QPE = 0;
     float totQPE = 0.0;
     float totHours = 0.0;
     float GPA = 0.0;
@@ -333,11 +335,11 @@ void lab3_2021(){
     cout << "Grade report written to " << fn << endl;
 };
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 4
-// Date: 5/16/24
-// Description: 
-//------------------------------------------------------------------------------
+// Date: 5/22/24
+// Description: a small grading program for an instructor, used to enter quiz scores and calculate average scores for a group of students
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab4(){
     const int MAX_STU = 20;
     const int MAX_QUIZ = 10;
@@ -402,78 +404,168 @@ void lab4(){
     return;
 };
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 5
 // Date: 5/16/24
 // Description: 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab5(){
     cout << "This lab is currently not available\n";
 };
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 6
 // Date: 5/16/24
 // Description: 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab6(){
     cout << "This lab is currently not available\n";
 };
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 7
 // Date: 5/16/24
 // Description: 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab7(){
     cout << "This lab is currently not available\n";
 };
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 8
 // Date: 5/16/24
 // Description: 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab8(){
     cout << "This lab is currently not available\n";
 };
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 9
 // Date: 5/16/24
 // Description: 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab9(){
     cout << "This lab is currently not available\n";
 };
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 10
 // Date: 5/16/24
 // Description: 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab10(){
     cout << "This lab is currently not available\n";
 };
-
-//------------------------------------------------------------------------------
-//                              Project 1 - 2018
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+//                                                             Projects
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+//                                                         Project 1 - 2018
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Author: James Birch
-// Date: 5/21/24
-// Description: 
-//------------------------------------------------------------------------------
+// Date: 5/23/24
+// Description: a basic ATM Machine
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 void proj1_2018(){
-    cout << "This version is currently not available\n";
+    string accNum = ""; // account number
+    float accBal = 0.00;
+
+    // transaction begin
+    cout << "+---------------------+\n"
+         << "|  James' Bank, Inc.  |\n"
+         << "+---------------------+\n"
+         << setw(23) << left << "Enter account number:"; // prompt user for account number
+    cin >> accNum;
+
+    string option = "";
+    // loop until user enters shutdown for account number
+    while(accNum != "shutdown"){
+        cout << setw(23) << left << "Enter account balance:";
+        cin >> accBal; 
+
+        //print menu
+        cout << "B - Balance Inquiry\n"
+             << "D - Deposit\n"
+             << "W - Withdrawl\n"
+             << setw(19) << left << "Choose an option:";
+
+        cin >> option;
+
+        while((option != "B") && (option != "D") && (option != "W")){
+            cout << "\"" << option << "\" is an invalid option. Enter B, D or W.\n"
+                 << setw(19) << left << "Choose an option:";
+            cin >> option;
+        }
+        cout << fixed << setprecision(2);
+        // balance option
+        if(option == "B"){
+
+
+            cout << "+---------------------+\n"
+                 << "|  James' Bank, Inc.  |\n"
+                 << "+---------------------+\n"
+                 << setw(11) << left << "Account:" << accNum << endl
+                 << setw(11) << left << "Balance:" << "$" << setw(8) << right << accBal << endl;
+        }
+        // deposit option
+        else if(option == "D"){
+            float deposit = 0.00;
+            cout << "Enter depost amount: ";
+            cin >> deposit;
+            float prevBal = accBal;
+            accBal += deposit;
+
+            cout << "+---------------------+\n"
+                 << "|  James' Bank, Inc.  |\n"
+                 << "+---------------------+\n"
+                 << setw(11) << left << "Account:" << accNum << endl
+                 << setw(11) << left << "Prev Bal:" << "$" << setw(8) << right << prevBal << endl
+                 << setw(11) << left << "Deposit:" << "$" << setw(8) << right << deposit << endl
+                 << setw(11) << left << "New Bal:" << "$" << setw(8) << right << accBal << endl;
+        }
+        // withdrawl option
+        else if(option == "W"){
+            float wdrawal = 0.00;
+            cout << "Enter withdrawal amount: ";
+            cin >> wdrawal;
+            // can't withdrawal more money than you have in your account
+            while(wdrawal > accBal){
+                cout << "Insufficient Funds. Current Balence is $ " << accBal << endl
+                     << "Enter withdrawal amount: ";
+                cin >> wdrawal;
+            }
+            float prevBal = accBal;
+            accBal -= wdrawal;
+
+            cout << "+---------------------+\n"
+                 << "|  James' Bank, Inc.  |\n"
+                 << "+---------------------+\n"
+                 << setw(11) << left << "Account:" << accNum << endl
+                 << setw(11) << left << "Prev Bal:" << "$" << setw(8) << right << prevBal << endl
+                 << setw(11) << left << "Deposit:" << "$" << setw(8) << right << wdrawal << endl
+                 << setw(11) << left << "New Bal:" << "$" << setw(8) << right << accBal << endl;
+        }
+
+    // transaction begins again
+    cout << "+---------------------+\n"
+         << "|  James' Bank, Inc.  |\n"
+         << "+---------------------+\n"
+         << setw(23) << left << "Enter account number:"; // prompt user for account number
+    cin >> accNum;
+
+    }
+    cout << "Shutting down...bye!";
+
+    return;
 };
 
-//------------------------------------------------------------------------------
-//                              Project 1 - 2021
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+//                                                                              Project 1 - 2021
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Author: James Birch
 // Date: 5/21/24
 // Description: a small application to process payroll for a group of employees
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 void proj1_2021(){
     // constant tax rates
     // fed tax is named by the beginning number of the tax range(greater than)
@@ -658,22 +750,23 @@ void proj1_2021(){
 
     return;
 };
-
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+//                                                               Modes
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Tutor Mode
 // Date: 5/22/24
 // Description: Ask questions to test knowledge on programming basics
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 void tutorMode(){
     cout << "Tutor mode not currently available\n";
 };
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Tutor Mode
 // Date: 5/22/24
 // Description: Input loop where a user gives an input of program they want to test
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 void testerMode(){
-    string prog;
+    string prog = "";
     cout << "Enter program to test (or exit): ";
     cin >> prog;
     while(prog != "exit"){
@@ -688,7 +781,7 @@ void testerMode(){
             lab1();
         }
         else if(prog == "lab2"){
-            string ver2;
+            string ver2 = "";
             cout << "Select version of lab 2 (2018 or 2021): ";
             cin >> ver2;
 
@@ -707,7 +800,7 @@ void testerMode(){
             }
         }
         else if(prog == "lab3"){
-            string ver3;
+            string ver3 = "";
             cout << "Select version of lab 3 (2018 or 2021): ";
             cin >> ver3;
 
@@ -761,7 +854,7 @@ void testerMode(){
             lab10();
         }
         else if(prog == "proj1"){
-            string verP1;
+            string verP1 = "";
             cout << "Select version of project 1 (2018 or 2021): ";
             cin >> verP1;
 
@@ -799,14 +892,14 @@ void testerMode(){
     return;
 };
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Program Selection
 // Date: 5/16/24
 // Description: Input loop where a user gives an input of program they want to test
-// TODO: Convert this to onlt choosing between tutor and testing, and move current loop to testing function loop. Also eventually to its own class
-//------------------------------------------------------------------------------
+// TODO: Convertto its own class
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 void modeSelect(){
-    string mode;
+    string mode = "";
     cout << "Enter help if you want to know the options\n";
     cout << "Select mode (tutor or tester): ";
     cin >> mode;
@@ -834,12 +927,11 @@ void modeSelect(){
     return;
 };
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Main
 // Date: 5/16/24
 // Description: Enter mode selection function
-// TODO: Move to its own class
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 int main(){
 
     modeSelect();
