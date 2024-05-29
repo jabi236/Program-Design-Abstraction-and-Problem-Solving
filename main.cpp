@@ -617,8 +617,6 @@ void proj1_2018(){
         cout << fixed << setprecision(2);
         // balance option
         if(option == "B"){
-
-
             cout << "+---------------------+\n"
                  << "|  James' Bank, Inc.  |\n"
                  << "+---------------------+\n"
@@ -663,7 +661,6 @@ void proj1_2018(){
                  << setw(11) << left << "Deposit:" << "$" << setw(8) << right << wdrawal << endl
                  << setw(11) << left << "New Bal:" << "$" << setw(8) << right << accBal << endl;
         }
-
     // transaction begins again
     cout << "+---------------------+\n"
          << "|  James' Bank, Inc.  |\n"
@@ -868,6 +865,145 @@ void proj1_2021(){
 
     return;
 };
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+//                                                           Tutor Levels
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+//                                                              Level 1
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Author: James Birch
+// Date: 5/29/24
+// Description: First Round of Questions
+// TODO: move to class, make functions for warnings and lives
+// Possibly change to multiple choice
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+int levelone(int & lives, int & warns){
+    int start_lives = lives;
+    cout << "Level - 1\n"
+         << "Lives: " << lives << setw(16) << right << "Warnings: " << warns << endl;
+    if(lives != 0){
+    // Question 1
+    string answer1 = "";
+    cout << "Question 1 - What statement lets you include the library for cout? ";
+    getline(cin, answer1);
+    
+    // Loop until answer is incorrect or user has run out of lives
+    while(answer1 != "#include<iostream>" && lives != 0){
+        if(warns != 0){
+            // check for include statement
+            cout << "Warning, that answer was incorrect.\n";
+            if(answer1[0] != '#'){
+                cout << "Remember #include\n";
+            }
+            else{
+                cout << "Make sure your spelling is correct. No spaces\n";
+            }
+
+            warns--;
+            if(warns == 0){
+                cout << "Hint: Answer format is [#include<\"library\">]\n";
+            }
+            cout << "Warnings Remaining: " << warns << endl;
+        }
+        else{
+            lives--;
+            cout << "Incorrect Answer! Try Again.\n"
+                 << "Lives Remaining: " << lives << endl;
+        }
+
+        if(lives == 0){
+            return lives, warns;
+        }
+        cout << "Question 1 - What statement lets you include the library for cout? ";
+        getline(cin, answer1);
+    }
+
+    cout << "Correct! #include <iostream> allows you to use cout in your program!\n";
+
+    // Question 2
+    string answer2 = "";
+    cout << "Question 2 - What statement makes it so you don't have to write \"std::\" before statements like cout? ";
+    getline(cin, answer2);
+    while(answer2 != "using namespace std\;" && lives != 0){
+        if(warns != 0){
+            cout << "Warning, that answer was incorrect.\n";
+            // check for include statement
+            if(answer2[answer2.size()-1] != ';'){
+                cout << "Remember to put a semicolon at the end of your statement\n";
+            }
+            else{
+                cout << "Make sure your spelling is correct\n";
+            }
+
+            warns--;
+            if(warns == 0){
+                cout << "Hint: Answer format is [using namespace ___;]\n";
+            }
+            cout << "Warnings Remaining: " << warns << endl;
+        }
+        else{
+            lives--;
+            cout << "Incorrect Answer! Try Again.\n"
+                 << "Lives Remaining: " << lives << endl;
+        }
+
+        if(lives == 0){
+            return lives, warns;
+        }   
+        cout << "Question 2 - What statement makes it so you don't have to write \"std::\" before statements like cout? ";
+        getline(cin, answer2);
+    }
+
+    cout << "Correct! using namespace std; makes it so you don't have to put std:: before cout, string, etc!\n";
+    // Question 3
+    string answer3 = "";
+    cout << "Question 3 - Does this mode work? ";
+    getline(cin, answer3);
+    // Loop until answer is incorrect or user has run out of lives
+    while(answer3 != "No" && lives != 0){
+        // remove wrning
+        if(warns != 0){
+            cout << "Warning, that answer was incorrect.\n";
+            // check for include statement
+            if(answer3 == "yes"){
+                cout << "Is it really working?\n";
+            }
+            else{
+                cout << "Make sure your spelling is correct and capitalized\n";
+            }
+
+            warns--;
+            // give a hint once there is no more warnings
+            if(warns == 0){
+                cout << "Hint: Answer format is [No]\n";
+            }
+            cout << "Warnings Remaining: " << warns << endl;
+        }
+        else{
+            // remove life
+            lives--;
+            cout << "Incorrect Answer! Try Again.\n"
+                 << "Lives Remaining: " << lives << endl;
+        }
+
+        if(lives == 0){
+            return lives, warns;
+        }
+        cout << "Question 3 - Does this mode work? ";
+        getline(cin, answer3);
+    }
+    cout << "Correct! Tutor mode does not work!\n";
+
+    // end of level
+    cout << "Level Complete!\n";
+    }
+    if(start_lives == lives){
+        lives++;
+        cout << "You gained a life for not missing a question!\n";
+    }
+    return lives, warns;
+};
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 //                                                               Modes
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -876,7 +1012,57 @@ void proj1_2021(){
 // Description: Ask questions to test knowledge on programming basics
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void tutorMode(){
-    cout << "Tutor mode not currently available\n";
+
+    string diff_input;
+    int lives = 0;
+    int warnings = 0;
+    char difficulty = ' ';
+    cout << "Choose Difficulty Easy(E), Medium(M), Hard(H): ";
+    cin >> diff_input;
+    difficulty = toupper(diff_input[0]);
+
+    while(difficulty != 'E' && difficulty != 'M' && difficulty != 'H'){
+        cout << "Invalid input. Enter E, M, or H\n"
+             << "Choose Difficulty Easy(E), Medium(M), Hard(H): ";
+        cin >> diff_input;
+        difficulty = toupper(diff_input[0]);
+    }
+    if(difficulty == 'E'){
+        lives = 5;
+        warnings = 3;
+    }
+    else if(difficulty == 'M'){
+        lives = 4;
+        warnings = 2;
+    }
+    else if(difficulty == 'H'){
+        lives = 3;
+        warnings = 1;
+    }
+    else if(difficulty == 'T'){
+        cout << "Test no lives\n";
+        lives = 0;
+        warnings = 0;
+    }
+
+    cin.ignore();
+    lives, warnings = levelone(lives, warnings);
+
+    //cin.ignore();
+    //lives, warnings = leveltwo(lives, warnings);
+
+    //cin.ignore();
+    //lives, warnings = levelthree(lives, warnings);
+
+    if(lives == 0){
+        cout << "Game Over!\n";
+        return;
+    }
+    cout << "You Won!\n"
+         << "Final Lives: " << lives << setw(23) << right << "Final Warnings: " << warnings << endl
+         << "Exiting Tutor Mode\n";
+
+    return;
 };
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Tutor Mode
