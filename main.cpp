@@ -912,6 +912,7 @@ int levelone(int & lives, int & warns){
         }
 
         if(lives == 0){
+            cout << "Study Lab 1\n";
             return lives, warns;
         }
         cout << "Question 1 - What statement lets you include the library for cout? ";
@@ -948,6 +949,7 @@ int levelone(int & lives, int & warns){
         }
 
         if(lives == 0){
+            cout << "Study Lab 1\n";
             return lives, warns;
         }   
         cout << "Question 2 - What statement makes it so you don't have to write \"std::\" before statements like cout? ";
@@ -957,26 +959,30 @@ int levelone(int & lives, int & warns){
     cout << "Correct! using namespace std; makes it so you don't have to put std:: before cout, string, etc!\n";
     // Question 3
     string answer3 = "";
-    cout << "Question 3 - Does this mode work? ";
-    getline(cin, answer3);
+    char mc_answer3 = ' ';
+    cout << "Question 3 - Which line of code makes the program say \"Hello World!\" ?\n"
+         << "A - print(\"Hello World!\")\n"
+         << "B - System.out.println(\"Hello World!\")\;\n"
+         << "C - cout << \"Hello World!\"\;\n"
+         << "D - cout << \'Hello World!\'\;\n"
+         << ": ";
+
+    cin >> answer3;
+    mc_answer3 = toupper(answer3[0]);
     // Loop until answer is incorrect or user has run out of lives
-    while(answer3 != "No" && lives != 0){
+    while(mc_answer3 != 'C' && lives != 0){
         // remove wrning
         if(warns != 0){
             cout << "Warning, that answer was incorrect.\n";
             // check for include statement
-            if(answer3 == "yes"){
-                cout << "Is it really working?\n";
+            if(mc_answer3 == 'D'){
+                cout << "Printing strings requires double quotes.\n";
             }
-            else{
-                cout << "Make sure your spelling is correct and capitalized\n";
+            else if(mc_answer3 == 'A' || mc_answer3 == 'B'){
+                cout << "Remember this code is in C++.\n";
             }
 
             warns--;
-            // give a hint once there is no more warnings
-            if(warns == 0){
-                cout << "Hint: Answer format is [No]\n";
-            }
             cout << "Warnings Remaining: " << warns << endl;
         }
         else{
@@ -987,12 +993,20 @@ int levelone(int & lives, int & warns){
         }
 
         if(lives == 0){
+            cout << "Study Lab 1\n";
             return lives, warns;
         }
-        cout << "Question 3 - Does this mode work? ";
-        getline(cin, answer3);
+        cout << "Question 3 - Which line of code makes the program say \"Hello World!\" ?\n"
+         << "A - print(\"Hello World!\")\n"
+         << "B - System.out.println(\"Hello World!\")\;\n"
+         << "C - cout << \"Hello World!\"\;\n"
+         << "D - cout << \'Hello World!\'\;\n"
+         << ": "; 
+
+        cin >> answer3;
+        mc_answer3 = toupper(answer3[0]);
     }
-    cout << "Correct! Tutor mode does not work!\n";
+    cout << "Correct! cout using double quotes is the correct way to print Hello World in C++.\n";
 
     // end of level
     cout << "Level Complete!\n";
