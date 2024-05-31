@@ -869,11 +869,9 @@ void proj1_2021(){
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 //                                                           Tutor Levels
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-//                                                              Level 1
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 // Author: James Birch
 // Date: 5/29/24
-// Description: First Round of Questions
+// Description: First Round of Questions. Related to Lab 1
 // TODO: move to class, make functions for warnings and lives
 // Possibly change to multiple choice
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -997,11 +995,11 @@ int levelone(int & lives, int & warns){
             return lives, warns;
         }
         cout << "Question 3 - Which line of code makes the program say \"Hello World!\" ?\n"
-         << "A - print(\"Hello World!\")\n"
-         << "B - System.out.println(\"Hello World!\")\;\n"
-         << "C - cout << \"Hello World!\"\;\n"
-         << "D - cout << \'Hello World!\'\;\n"
-         << ": "; 
+             << "A - print(\"Hello World!\")\n"
+             << "B - System.out.println(\"Hello World!\")\;\n"
+             << "C - cout << \"Hello World!\"\;\n"
+             << "D - cout << \'Hello World!\'\;\n"
+             << ": "; 
 
         cin >> answer3;
         mc_answer3 = toupper(answer3[0]);
@@ -1015,6 +1013,582 @@ int levelone(int & lives, int & warns){
         lives++;
         cout << "You gained a life for not missing a question!\n";
     }
+    return lives, warns;
+};
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Author: James Birch
+// Date: 5/30/24
+// Description: Second Round of Questions. Related to Lab 2
+// TODO: move to class, make functions for warnings and lives
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+int leveltwo(int & lives, int & warns){
+    // temp return
+    cout << "Level 2 is currently not available.\n";
+    return lives, warns;
+
+    int start_lives = lives;
+    cout << "Level - 2\n"
+         << "Lives: " << lives << setw(16) << right << "Warnings: " << warns << endl;
+    if(lives != 0){
+    // Question 1
+    string answer1 = "";
+    cout << "Question 1 - ? ";
+    getline(cin, answer1);
+    
+    // Loop until answer is incorrect or user has run out of lives
+    while(answer1 != " " && lives != 0){
+        if(warns != 0){
+            // check for include statement
+            cout << "Warning, that answer was incorrect.\n";
+            if(answer1[0] != ' '){
+                cout << "Remember \n";
+            }
+            else{
+                cout << "Make sure your spelling is correct.\n";
+            }
+
+            warns--;
+            if(warns == 0){
+                cout << "Hint: Answer format is []\n";
+            }
+            cout << "Warnings Remaining: " << warns << endl;
+        }
+        else{
+            lives--;
+            cout << "Incorrect Answer! Try Again.\n"
+                 << "Lives Remaining: " << lives << endl;
+        }
+
+        if(lives == 0){
+            cout << "Study Lab 2\n";
+            return lives, warns;
+        }
+        cout << "Question 1 - ? ";
+        getline(cin, answer1);
+    }
+
+    cout << "Correct! !\n";
+
+    // Question 2
+    string answer2 = "";
+    cout << "Question 2 - ? ";
+    getline(cin, answer2);
+    while(answer2 != " " && lives != 0){
+        if(warns != 0){
+            cout << "Warning, that answer was incorrect.\n";
+            // check for include statement
+            if(answer2[answer2.size()-1] != ';'){
+                cout << "Remember to put a semicolon at the end of your statement\n";
+            }
+            else{
+                cout << "Make sure your spelling is correct\n";
+            }
+
+            warns--;
+            if(warns == 0){
+                cout << "Hint: Answer format is []\n";
+            }
+            cout << "Warnings Remaining: " << warns << endl;
+        }
+        else{
+            lives--;
+            cout << "Incorrect Answer! Try Again.\n"
+                 << "Lives Remaining: " << lives << endl;
+        }
+
+        if(lives == 0){
+            cout << "Study Lab 2\n";
+            return lives, warns;
+        }   
+        cout << "Question 2 - ? ";
+        getline(cin, answer2);
+    }
+
+    cout << "Correct! !\n";
+    // Question 3
+    string answer3 = "";
+    char mc_answer3 = ' ';
+    cout << "Question 3 - Which option below  ?\n"
+         << "A - \n"
+         << "B - \n"
+         << "C - \n"
+         << "D - \n"
+         << ": ";
+
+    cin >> answer3;
+    mc_answer3 = toupper(answer3[0]);
+    // Loop until answer is incorrect or user has run out of lives
+    while(mc_answer3 != 'C' && lives != 0){
+        // remove wrning
+        if(warns != 0){
+            cout << "Warning, that answer was incorrect.\n";
+            // check for include statement
+            if(mc_answer3 == 'D'){
+                cout << "Printing strings requires double quotes.\n";
+            }
+            else if(mc_answer3 == 'A' || mc_answer3 == 'B'){
+                cout << "Remember this code is in C++.\n";
+            }
+
+            warns--;
+            cout << "Warnings Remaining: " << warns << endl;
+        }
+        else{
+            // remove life
+            lives--;
+            cout << "Incorrect Answer! Try Again.\n"
+                 << "Lives Remaining: " << lives << endl;
+        }
+
+        if(lives == 0){
+            cout << "Study Lab 2\n";
+            return lives, warns;
+        }
+        cout << "Question 3 - Which option below  ?\n"
+             << "A - \n"
+             << "B - \n"
+             << "C - \n"
+             << "D - \n"
+             << ": ";
+
+        cin >> answer3;
+        mc_answer3 = toupper(answer3[0]);
+    }
+    cout << "Correct! !\n";
+
+    // end of level
+    cout << "Level Complete!\n";
+    }
+    if(start_lives == lives){
+        lives++;
+        cout << "You gained a life for not missing a question!\n";
+    }
+    return lives, warns;
+};
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Author: James Birch
+// Date: 5/30/24
+// Description: Third Round of Questions. Related to Lab 3
+// TODO: move to class, make functions for warnings and lives
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+int levelthree(int & lives, int & warns){
+    // temp return
+    cout << "Level 3 is currently not available.\n";
+    return lives, warns;
+};
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Author: James Birch
+// Date: 5/30/24
+// Description: First Boss Round of Questions. Related to Project 1
+// TODO: move to class, make functions for warnings and lives
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+int levelbossone(int & lives, int & warns){
+    // temp return
+    cout << "Level ★ is currently not available.\n";
+    return lives, warns;
+
+    int start_lives = lives;
+    cout << "Level - ★\n"
+         << "Lives: " << lives << setw(16) << right << "Warnings: " << warns << endl;
+    if(lives != 0){
+    // Question 1
+    string answer1 = "";
+    cout << "Question 1 - ? ";
+    getline(cin, answer1);
+    
+    // Loop until answer is incorrect or user has run out of lives
+    while(answer1 != " " && lives != 0){
+        if(warns != 0){
+            // check for include statement
+            cout << "Warning, that answer was incorrect.\n";
+            if(answer1[0] != ' '){
+                cout << "Remember \n";
+            }
+            else{
+                cout << "Make sure your spelling is correct.\n";
+            }
+
+            warns--;
+            if(warns == 0){
+                cout << "Hint: Answer format is []\n";
+            }
+            cout << "Warnings Remaining: " << warns << endl;
+        }
+        else{
+            lives--;
+            cout << "Incorrect Answer! Try Again.\n"
+                 << "Lives Remaining: " << lives << endl;
+        }
+
+        if(lives == 0){
+            cout << "Study Project 1\n";
+            return lives, warns;
+        }
+        cout << "Question 1 - ? ";
+        getline(cin, answer1);
+    }
+
+    cout << "Correct! !\n";
+
+    // Question 2
+    string answer2 = "";
+    cout << "Question 2 - ? ";
+    getline(cin, answer2);
+    while(answer2 != " " && lives != 0){
+        if(warns != 0){
+            cout << "Warning, that answer was incorrect.\n";
+            // check for include statement
+            if(answer2[answer2.size()-1] != ';'){
+                cout << "Remember to put a semicolon at the end of your statement\n";
+            }
+            else{
+                cout << "Make sure your spelling is correct\n";
+            }
+
+            warns--;
+            if(warns == 0){
+                cout << "Hint: Answer format is []\n";
+            }
+            cout << "Warnings Remaining: " << warns << endl;
+        }
+        else{
+            lives--;
+            cout << "Incorrect Answer! Try Again.\n"
+                 << "Lives Remaining: " << lives << endl;
+        }
+
+        if(lives == 0){
+            cout << "Study Lab Project 1\n";
+            return lives, warns;
+        }   
+        cout << "Question 2 - ? ";
+        getline(cin, answer2);
+    }
+
+    cout << "Correct! !\n";
+    // Question 3
+    string answer3 = "";
+    char mc_answer3 = ' ';
+    cout << "Question 3 - Which option below  ?\n"
+         << "A - \n"
+         << "B - \n"
+         << "C - \n"
+         << "D - \n"
+         << ": ";
+
+    cin >> answer3;
+    mc_answer3 = toupper(answer3[0]);
+    // Loop until answer is incorrect or user has run out of lives
+    while(mc_answer3 != 'C' && lives != 0){
+        // remove wrning
+        if(warns != 0){
+            cout << "Warning, that answer was incorrect.\n";
+            // check for include statement
+            if(mc_answer3 == 'D'){
+                cout << "Printing strings requires double quotes.\n";
+            }
+            else if(mc_answer3 == 'A' || mc_answer3 == 'B'){
+                cout << "Remember this code is in C++.\n";
+            }
+
+            warns--;
+            cout << "Warnings Remaining: " << warns << endl;
+        }
+        else{
+            // remove life
+            lives--;
+            cout << "Incorrect Answer! Try Again.\n"
+                 << "Lives Remaining: " << lives << endl;
+        }
+
+        if(lives == 0){
+            cout << "Study Lab Project 1\n";
+            return lives, warns;
+        }
+        cout << "Question 3 - Which option below  ?\n"
+             << "A - \n"
+             << "B - \n"
+             << "C - \n"
+             << "D - \n"
+             << ": ";
+
+        cin >> answer3;
+        mc_answer3 = toupper(answer3[0]);
+    }
+    cout << "Correct! !\n";
+
+    // Question 4
+
+    // Question 5
+
+
+    // end of level
+    cout << "Level Complete!\n";
+    }
+    if(start_lives == lives){
+        lives++;
+        lives++;
+        cout << "You gained two lives for not missing a question in a boss round!\n";
+    }
+    return lives, warns;
+};
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Author: James Birch
+// Date: 5/30/24
+// Description: Fourth Round of Questions. Related to Lab 4
+// TODO: move to class, make functions for warnings and lives
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+int levelfour(int & lives, int & warns){
+    // temp return
+    cout << "Level 4 is currently not available.\n";
+    return lives, warns;
+
+    int start_lives = lives;
+    cout << "Level - 4\n"
+         << "Lives: " << lives << setw(16) << right << "Warnings: " << warns << endl;
+    if(lives != 0){
+    // Question 1
+    string answer1 = "";
+    cout << "Question 1 - ? ";
+    getline(cin, answer1);
+    
+    // Loop until answer is incorrect or user has run out of lives
+    while(answer1 != " " && lives != 0){
+        if(warns != 0){
+            // check for include statement
+            cout << "Warning, that answer was incorrect.\n";
+            if(answer1[0] != ' '){
+                cout << "Remember \n";
+            }
+            else{
+                cout << "Make sure your spelling is correct.\n";
+            }
+
+            warns--;
+            if(warns == 0){
+                cout << "Hint: Answer format is []\n";
+            }
+            cout << "Warnings Remaining: " << warns << endl;
+        }
+        else{
+            lives--;
+            cout << "Incorrect Answer! Try Again.\n"
+                 << "Lives Remaining: " << lives << endl;
+        }
+
+        if(lives == 0){
+            cout << "Study Lab 4\n";
+            return lives, warns;
+        }
+        cout << "Question 1 - ? ";
+        getline(cin, answer1);
+    }
+
+    cout << "Correct! !\n";
+
+    // Question 2
+    string answer2 = "";
+    cout << "Question 2 - ? ";
+    getline(cin, answer2);
+    while(answer2 != " " && lives != 0){
+        if(warns != 0){
+            cout << "Warning, that answer was incorrect.\n";
+            // check for include statement
+            if(answer2[answer2.size()-1] != ';'){
+                cout << "Remember to put a semicolon at the end of your statement\n";
+            }
+            else{
+                cout << "Make sure your spelling is correct\n";
+            }
+
+            warns--;
+            if(warns == 0){
+                cout << "Hint: Answer format is []\n";
+            }
+            cout << "Warnings Remaining: " << warns << endl;
+        }
+        else{
+            lives--;
+            cout << "Incorrect Answer! Try Again.\n"
+                 << "Lives Remaining: " << lives << endl;
+        }
+
+        if(lives == 0){
+            cout << "Study Lab 4\n";
+            return lives, warns;
+        }   
+        cout << "Question 2 - ? ";
+        getline(cin, answer2);
+    }
+
+    cout << "Correct! !\n";
+    // Question 3
+    string answer3 = "";
+    char mc_answer3 = ' ';
+    cout << "Question 3 - Which option below  ?\n"
+         << "A - \n"
+         << "B - \n"
+         << "C - \n"
+         << "D - \n"
+         << ": ";
+
+    cin >> answer3;
+    mc_answer3 = toupper(answer3[0]);
+    // Loop until answer is incorrect or user has run out of lives
+    while(mc_answer3 != 'C' && lives != 0){
+        // remove wrning
+        if(warns != 0){
+            cout << "Warning, that answer was incorrect.\n";
+            // check for include statement
+            if(mc_answer3 == 'D'){
+                cout << "Printing strings requires double quotes.\n";
+            }
+            else if(mc_answer3 == 'A' || mc_answer3 == 'B'){
+                cout << "Remember this code is in C++.\n";
+            }
+
+            warns--;
+            cout << "Warnings Remaining: " << warns << endl;
+        }
+        else{
+            // remove life
+            lives--;
+            cout << "Incorrect Answer! Try Again.\n"
+                 << "Lives Remaining: " << lives << endl;
+        }
+
+        if(lives == 0){
+            cout << "Study Lab 4\n";
+            return lives, warns;
+        }
+        cout << "Question 3 - Which option below  ?\n"
+             << "A - \n"
+             << "B - \n"
+             << "C - \n"
+             << "D - \n"
+             << ": ";
+
+        cin >> answer3;
+        mc_answer3 = toupper(answer3[0]);
+    }
+    cout << "Correct! !\n";
+
+    // end of level
+    cout << "Level Complete!\n";
+    }
+    if(start_lives == lives){
+        lives++;
+        cout << "You gained a life for not missing a question!\n";
+    }
+    return lives, warns;
+};
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Author: James Birch
+// Date: 5/30/24
+// Description: Third Round of Questions. Related to Lab 5
+// TODO: move to class, make functions for warnings and lives
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+int levelfive(int & lives, int & warns){
+    // temp return
+    cout << "Level 5 is currently not available.\n";
+    return lives, warns;
+};
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Author: James Birch
+// Date: 5/30/24
+// Description: Sixth Round of Questions. Related to Lab 6
+// TODO: move to class, make functions for warnings and lives
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+int levelsix(int & lives, int & warns){
+    // temp return
+    cout << "Level 6 is currently not available.\n";
+    return lives, warns;
+
+};
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Author: James Birch
+// Date: 5/30/24
+// Description: Second Boss Round of Questions. Related to Project 2
+// TODO: move to class, make functions for warnings and lives
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+int levelbosstwo(int & lives, int & warns){
+    // temp return
+    cout << "Level ★★ is currently not available.\n";
+    return lives, warns;
+};
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Author: James Birch
+// Date: 5/30/24
+// Description: Seventh Round of Questions. Related to Lab 7
+// TODO: move to class, make functions for warnings and lives
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+int levelseven(int & lives, int & warns){
+    cout << "Level 7 is currently not available.\n";
+    return lives, warns;
+};
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Author: James Birch
+// Date: 5/30/24
+// Description: Eighth Round of Questions. Related to Lab 8
+// TODO: move to class, make functions for warnings and lives
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+int leveleight(int & lives, int & warns){
+    cout << "Level 8 is currently not available.\n";
+    return lives, warns;
+};
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Author: James Birch
+// Date: 5/30/24
+// Description: Ninth Round of Questions. Related to Lab 9
+// TODO: move to class, make functions for warnings and lives
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+int levelnine(int & lives, int & warns){
+    cout << "Level 9 is currently not available.\n";
+    return lives, warns;
+};
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Author: James Birch
+// Date: 5/30/24
+// Description: Tenth Round of Questions. Related to Lab 10
+// TODO: move to class, make functions for warnings and lives
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+int levelten(int & lives, int & warns){
+    cout << "Level 10 is currently not available.\n";
+    return lives, warns;
+};
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Author: James Birch
+// Date: 5/30/24
+// Description: Third Boss Round of Questions. Related to Project 3
+// TODO: move to class, make functions for warnings and lives
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+int levelbossthree(int & lives, int & warns){
+    // temp return
+    cout << "Level ★★★ is currently not available.\n";
+    return lives, warns;
+};
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Author: James Birch
+// Date: 5/30/24
+// Description: Fourth and Final? Boss Round of Questions. Related to Project 4
+// TODO: move to class, make functions for warnings and lives
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+int levelbosstwo(int & lives, int & warns){
+    // temp return
+    cout << "Level ★★★★ is currently not available.\n";
     return lives, warns;
 };
 
@@ -1067,6 +1641,39 @@ void tutorMode(){
 
     //cin.ignore();
     //lives, warnings = levelthree(lives, warnings);
+
+    //cin.ignore();
+    //lives, warnings = levelfour(lives, warnings);
+
+    //cin.ignore();
+    //lives, warnings = levelbossone(lives, warnings);
+
+    //cin.ignore();
+    //lives, warnings = levelfive(lives, warnings);
+
+    //cin.ignore();
+    //lives, warnings = levelsix(lives, warnings);
+
+    //cin.ignore();
+    //lives, warnings = levelbosstwo(lives, warnings);
+
+    //cin.ignore();
+    //lives, warnings = levelseven(lives, warnings);
+
+    //cin.ignore();
+    //lives, warnings = leveleight(lives, warnings);
+
+    //cin.ignore();
+    //lives, warnings = levelnine(lives, warnings);
+
+    //cin.ignore();
+    //lives, warnings = levelten(lives, warnings);
+
+    //cin.ignore();
+    //lives, warnings = levelbossthree(lives, warnings);
+
+    //cin.ignore();
+    //lives, warnings = levelbossfour(lives, warnings);
 
     if(lives == 0){
         cout << "Game Over!\n";
