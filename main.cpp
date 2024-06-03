@@ -984,13 +984,249 @@ void proj1_2021(){
     return;
 };
 
+const int proj2_2019_READ_ERROR    = -1;
+const int proj2_2019_MAX_INV_ITEMS = 10;
+
+// describes a single item in the inventory, and on an order
+struct proj2_2019_item {
+	string prodCode;		// product code: length 12, no spaces
+	string description;		// product description: max length 28, has spaces
+	double price;			// price of the product, max 999.99
+};
+
+const int proj2_2019_MAX_ORDERS = 10;
+
+// describes a customer order or "basket"
+const int proj2_2019_MAX_ORDER_ITEMS = 5;
+struct proj2_2019_order {
+	long   orderNumber;		// unique order number for this order
+	string custName;		// customer name
+	double totalPrice;		// price of all items purchased
+	proj2_2019_item items[proj2_2019_MAX_ORDER_ITEMS];	// list of items purchased
+	int numItems;			// number of items purchased
+};
+
+//----------------------------------------------------------------------------
+//                                  readInventory
+//----------------------------------------------------------------------------
+// Modifies: inventory list (sets numberOfItems to -1 on READ ERROR)
+//           lastOrderNum
+// Reads inventory data from a file into an array of inventory items
+//----------------------------------------------------------------------------
+void proj2_2019_readInventory(proj2_2019_item inv[], int & numberOfInvItems, int & lastOrderNum) {
+	ifstream f;
+
+	// open the inventory file
+	f.open("inventory.txt");
+	if (f.fail()) {
+		cout << "readFile:: error opening inventory.txt\n";
+		numberOfInvItems = proj2_2019_READ_ERROR;
+		return;
+	}
+
+	// read number of items from first line
+	f >> numberOfInvItems >> lastOrderNum;
+
+	// for each item, read the data for the item
+	for (int i = 0; i < numberOfInvItems; i++) {
+		f >> inv[i].prodCode >> inv[i].price;
+		f.ignore(); // finished reading integer, getline() on string is next
+		getline(f, inv[i].description);
+	}
+	f.close();
+} // readInventory()
+
+//----------------------------------------------------------------------------
+//                                  isValidOption
+//----------------------------------------------------------------------------
+// given: option character, and string of valid options
+// returns true or false if menu option is valid
+//----------------------------------------------------------------------------
+bool proj2_2019_isValidOption(char o, string val) {
+	
+    for(int i = 0; i < val.length(); i++){
+        if(val[i] == o){
+            return true;
+        }
+    }
+
+    return false;
+} // isValidOption()
+
+//----------------------------------------------------------------------------
+//                                  getMenuOption
+//----------------------------------------------------------------------------
+// returns menu option character
+//----------------------------------------------------------------------------
+char proj2_2019_getMenuOption() {
+	
+    string userInput;
+    char option;
+    // display menu
+    cout << "+-----------------------------------------------------+\n"
+         << "|                      AMOZON.COM                     |\n"
+         << "|                       by James                      |\n"
+         << "+-----------------------------------------------------+\n";
+    // user input
+    cout << "Enter an option: ";
+    if(cin.peek() == '\n') cin.ignore(); // just in case it's needed
+    getline(cin, userInput);
+    option = toupper(userInput[0]);
+    // userInput[0] is the first char of the string userInput
+    // toupper is a C++ function that converts a lowercase char to uppercase
+
+    // loop until valid option. Use isValidOption function with string of valid options to check
+    while(!proj2_2019_isValidOption(option, "IOLX")){
+        cout << "Invalid option, enter I, O, L or X!\n";
+
+        cout << "Enter an option: ";
+        if(cin.peek() == '\n') cin.ignore();
+        getline(cin, userInput);
+        option = toupper(userInput[0]);
+    }
+
+    return option;
+} // getMenuOption()
+
+//----------------------------------------------------------------------------
+//                                  displayList
+//----------------------------------------------------------------------------
+// given: inventory struct
+// prints list of items in inventory
+//----------------------------------------------------------------------------
+void proj2_2019_displayList(proj2_2019_item inv[], int numItems) {
+	for(int i = 0; i < numItems; i++){
+        cout << setw(3) << right << i << "  " << setw(12) << left << inv[i].prodCode << "  $" << setw(6) << right << setprecision(2) << inv[i].price << "  " << inv[i].description;
+        if(i != numItems-1){
+            cout << endl;
+        }
+    }
+    
+} // displayList()
+
+//----------------------------------------------------------------------------
+//                                  displayInventory
+//----------------------------------------------------------------------------
+// given: inventory struct
+// prints header for inventory list
+//----------------------------------------------------------------------------
+void proj2_2019_displayInventory(proj2_2019_item inv[], int numItems) {
+	cout << "+-----------------------------------------------------+\n"
+         << "|                       Products                      |\n"
+         << "+-----------------------------------------------------+\n"
+         << " #   PRODUCT CODE   PRICE   PRODUCT DESCRIPTION\n"
+         << "---  ------------  -------  ---------------------------\n";
+    proj2_2019_displayList(inv, numItems);
+    cout << "Number of items in inventory: " << numItems << endl << endl;
+} // displayInventory()
+
+//----------------------------------------------------------------------------
+//                                  displayOrder
+//----------------------------------------------------------------------------
+// given: order struct
+// prints header for inventory list
+//----------------------------------------------------------------------------
+void proj2_2019_displayOrder(proj2_2019_order o){
+	cout << "ORDER: " << o.orderNumber << "   " << o.custName << endl;
+    proj2_2019_displayList(o.items, o.numItems);
+    cout << "TOTAL              $" << setprecision(2) << setw(6) << right << o.totalPrice << endl << endl;
+} // displayOrder()
+
+//----------------------------------------------------------------------------
+//                                  startOrder
+//----------------------------------------------------------------------------
+// modifies partial aray of orders and LastOrderNumber
+//----------------------------------------------------------------------------
+void proj2_2019_startOrder(proj2_2019_order o[], int & numOrds, int & LastONum){
+    o[numOrds].orderNumber = LastONum++;
+    o[numOrds].totalPrice = 0;
+    o[numOrds].numItems = 0;
+
+    cout << setw(21) << left << "Order Number:" << o[numOrds].orderNumber << endl
+         << setw(21) << left << "Enter customer name:";
+    if(cin.peek() == '\n') cin.ignore();
+    getline(cin, o[numOrds].custName);
+
+    //LastONum = o[numOrds].orderNumber;
+    numOrds++;
+} // startOrder()
+
+//----------------------------------------------------------------------------
+//                                  orderItem
+//----------------------------------------------------------------------------
+// given: inventory partial array
+// true if user chose to quit and false if the order is not done
+//----------------------------------------------------------------------------
+bool proj2_2019_orderItem(proj2_2019_item inv[], proj2_2019_order o, int numInInv){
+    int numItemInput;
+    cout << "Enter an item number: ";
+    cin >> numItemInput;
+    while(numItemInput < -1 || numItemInput > numInInv-1){
+        cout << "Invalid entry. Enter number -1 to " << numInInv-1 << endl;
+
+        cout << "Enter an item number: ";
+        cin >> numItemInput;
+    }
+    if(numItemInput == -1){
+        return true;
+    }
+    o.items[o.numItems] = inv[numItemInput];
+    o.totalPrice += inv[numItemInput].price;
+    cout << inv[numItemInput].description << " added to your basket. Current total is " << o.totalPrice;
+    o.numItems++;
+
+    return false;
+} // orderItem()
+
+//----------------------------------------------------------------------------
+//                                  makeOrder
+//----------------------------------------------------------------------------
+// given: inventory partial array
+// Adds new order struct to orders partial array
+//----------------------------------------------------------------------------
+void proj2_2019_makeOrder(proj2_2019_item inv[], proj2_2019_order o[], int & lastONum){
+	
+} // makeOrder()
+
+//----------------------------------------------------------------------------
+//                                  listOrders
+//----------------------------------------------------------------------------
+// given: partial array of orders
+// prints list of orders
+//----------------------------------------------------------------------------
+void proj2_2019_listOrders(proj2_2019_order o[]){
+	
+} // listOrders()
+
+//----------------------------------------------------------------------------
+//                                  writeOrders
+//----------------------------------------------------------------------------
+// given: partial array of orders
+// writes orders made to text file
+//----------------------------------------------------------------------------
+void proj2_2019_writeOrders(proj2_2019_order o[]){
+	
+} // writeOrders()
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Project 2
 // Date: 6/3/24
 // Description: 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-void proj2(){
-    cout << "This project is currently not available\n";
+void proj2_2019(){
+    proj2_2019_item inv[proj2_2019_MAX_INV_ITEMS];
+    proj2_2019_order orders[proj2_2019_MAX_ORDERS];
+    int lastOrderNumber = 0;
+    int numOrders = 0;
+    int numInv = 0;
+    char menuOption;
+
+    proj2_2019_readInventory(inv, numInv, lastOrderNumber);
+    menuOption = proj2_2019_getMenuOption();
+    proj2_2019_makeOrder(inv, orders, lastOrderNumber);
+    proj2_2019_listOrders(orders);
+    proj2_2019_writeOrders(orders);
+
+    return;
 };
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1105,9 +1341,9 @@ int levelone(int & lives, int & warns){
     char mc_answer3 = ' ';
     cout << "Question 3 - Which line of code makes the program say \"Hello World!\" ?\n"
          << "A - print(\"Hello World!\")\n"
-         << "B - System.out.println(\"Hello World!\")\;\n"
-         << "C - cout << \"Hello World!\"\;\n"
-         << "D - cout << \'Hello World!\'\;\n"
+         << "B - System.out.println(\"Hello World!\");\n"
+         << "C - cout << \"Hello World!\";\n"
+         << "D - cout << \'Hello World!\';\n"
          << ": ";
 
     cin >> answer3;
@@ -1141,9 +1377,9 @@ int levelone(int & lives, int & warns){
         }
         cout << "Question 3 - Which line of code makes the program say \"Hello World!\" ?\n"
              << "A - print(\"Hello World!\")\n"
-             << "B - System.out.println(\"Hello World!\")\;\n"
-             << "C - cout << \"Hello World!\"\;\n"
-             << "D - cout << \'Hello World!\'\;\n"
+             << "B - System.out.println(\"Hello World!\");\n"
+             << "C - cout << \"Hello World!\";\n"
+             << "D - cout << \'Hello World!\';\n"
              << ": "; 
 
         cin >> answer3;
@@ -1965,7 +2201,11 @@ void testerMode(){
                  << "\"lab1\" - Run Lab 1\n"
                  << "\"lab2\" - Run Lab 2 (2018 or 2021 Edition)\n"
                  << "\"lab3\" - Run Lab 3 (2018 or 2021 Edition)\n"
-                 << "\"proj1\" - Run Project 1 (2018 or 2021 Edition)\n";
+                 << "\"lab4\" - Run Lab 4\n"
+                 << "\"lab5\" - Run Lab 5\n"
+                 << "\"lab6\" - Run Lab 6\n"
+                 << "\"proj1\" - Run Project 1 (2018 or 2021 Edition)\n"
+                 << "\"proj2\" - Run Project 1 (2019 or 2021 Edition)\n";
         }
         else{
             cout << "Invalid input\n";
