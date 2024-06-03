@@ -404,7 +404,6 @@ void lab4(){
     return;
 };
 
-
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 //                                                              Lab 5
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -531,13 +530,132 @@ void lab5(){
     return;
 };
 
+struct lab6_frac{ // a fraction structure
+    int num; // numerator
+    int den; // denominator
+};
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Function: AskFraction
+// Date: 6/3/24
+// Description: Ask user for numerator and denomnator of a fraction
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+lab6_frac lab6_AskFraction(){
+    lab6_frac f;
+    cout << setw(23) << left << "Enter numerator:";
+    cin >> f.num;
+    cout << setw(23) << left << "Enter denominator > 0:";
+    cin >> f.den;
+
+    while(f.den <= 0){
+        cout << setw(23) << left << "Enter denominator > 0:";
+        cin >> f.den;
+    }
+
+    return f;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Function: DecimalValue
+// Date: 6/3/24
+// Description: given a fraction, then calculates and returns the decimal value of the fraction 
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+float lab6_DecimalValue(lab6_frac f){
+    float dVal = 0.00;
+    float num = f.num; // turn numerator and denominator into floats so they can be divided to find the decimal value
+    float den = f.den; // ints cannot be calculated together to get a float
+    dVal = num / den;
+    return dVal;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Function: PrintFraction
+// Date: 6/3/24
+// Description: prints fraction in format with decimal value
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+void lab6_PrintFraction(lab6_frac f){
+    cout << setw(3) << right << f.num << endl
+         << "----  = " << setprecision(6) << setw(10) << left << lab6_DecimalValue(f) << endl
+         << setw(3) << right << f.den << endl;
+    return;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Function: Multiply
+// Date: 6/3/24
+// Description: given a 2 fractions, return the product of the given fractions 
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+lab6_frac lab6_Multiply(lab6_frac a, lab6_frac b){
+    lab6_frac c;
+    c.num = a.num * b.num;
+    c.den = a.den * b.den;
+    return c;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Function: Add
+// Date: 6/3/24
+// Description: given a 2 fractions, return the sum of the given fractions 
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+lab6_frac lab6_Add(lab6_frac a, lab6_frac b){
+    lab6_frac c;
+    if(a.den == b.den){
+        c.num = a.num + b.num;
+        c.den = a.den;
+    }
+    else{
+        c.num = (a.num * b.den) + (b.num * a.den);
+        c.den = a.den * b.den;
+    }
+
+    return c;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Function: Simplify
+// Date: 6/3/24
+// Description: modifies a fraction by simplifying it
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+lab6_frac lab6_Simplify(lab6_frac &f){
+    for(int i = f.num; i >= 2; i--){
+        if((f.num % i == 0) && (f.den % i == 0)){
+            f.num /= i;
+            f.den /= i;
+        }
+    }
+    return f;
+}
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 6
-// Date: 5/16/24
-// Description: 
+// Date: 6/3/24
+// Description: write and test a set of functions dealing with a Fraction, based on detailed function designs.
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab6(){
-    cout << "This lab is currently not available\n";
+    lab6_frac f1, f2, f_p, f_s; // fraction 1, fraction 2, product of fractions, sum of fractions
+
+    // get input from user of 2 fractions
+    cout << "FRACTION 1:\n";
+    f1 = lab6_AskFraction();
+    cout << "\nFRACTION 2:\n";
+    f2 = lab6_AskFraction();
+
+    // multiply fractions
+    cout << "PRODUCT:\n";
+    f_p = lab6_Multiply(f1, f2);
+    lab6_PrintFraction(f_p);
+
+    //add fractions
+    cout << "SUM:\n";
+    f_s = lab6_Add(f1, f2);
+    lab6_PrintFraction(f_s);
+
+    // simplify product of fractions
+    cout << "PRODUCT SIMPLIFIED:\n";
+    lab6_Simplify(f_p);
+    lab6_PrintFraction(f_p);
+
+    return;
 };
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -864,6 +982,33 @@ void proj1_2021(){
     cout << endl <<"Payroll report written to file.\n";
 
     return;
+};
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Function: Project 2
+// Date: 6/3/24
+// Description: 
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+void proj2(){
+    cout << "This project is currently not available\n";
+};
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Function: Project 3
+// Date: 6/3/24
+// Description: 
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+void proj3(){
+    cout << "This project is currently not available\n";
+};
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Function: Project 4
+// Date: 6/3/24
+// Description: 
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+void proj4(){
+    cout << "This project is currently not available\n";
 };
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1586,7 +1731,7 @@ int levelbossthree(int & lives, int & warns){
 // Description: Fourth and Final? Boss Round of Questions. Related to Project 4
 // TODO: move to class, make functions for warnings and lives
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-int levelbosstwo(int & lives, int & warns){
+int levelbossfour(int & lives, int & warns){
     // temp return
     cout << "Level ★★★★ is currently not available.\n";
     return lives, warns;
