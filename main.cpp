@@ -1064,9 +1064,13 @@ char proj2_2019_getMenuOption() {
     char option;
     // display menu
     cout << "+-----------------------------------------------------+\n"
-         << "|                      AMOZON.COM                     |\n"
+         << "|                     JAMAZON.COM                     |\n"
          << "|                       by James                      |\n"
-         << "+-----------------------------------------------------+\n";
+         << "+-----------------------------------------------------+\n"
+         << "I - List our Inventory\n"
+         << "O - Make an Order\n"
+         << "L - List all Orders made\n"
+         << "X - Exit\n";
     // user input
     cout << "Enter an option: ";
     if(cin.peek() == '\n') cin.ignore(); // just in case it's needed
@@ -1096,7 +1100,7 @@ char proj2_2019_getMenuOption() {
 //----------------------------------------------------------------------------
 void proj2_2019_displayList(proj2_2019_item inv[], int numItems) {
 	for(int i = 0; i < numItems; i++){
-        cout << setw(3) << right << i << "  " << setw(12) << left << inv[i].prodCode << "  $" << setw(6) << right << setprecision(2) << inv[i].price << "  " << inv[i].description;
+        cout << setw(3) << right << i << "  " << setw(12) << left << inv[i].prodCode << "  $" << setw(6) << right << inv[i].price << "  " << inv[i].description;
         if(i != numItems-1){
             cout << endl;
         }
@@ -1117,7 +1121,7 @@ void proj2_2019_displayInventory(proj2_2019_item inv[], int numItems) {
          << " #   PRODUCT CODE   PRICE   PRODUCT DESCRIPTION\n"
          << "---  ------------  -------  ---------------------------\n";
     proj2_2019_displayList(inv, numItems);
-    cout << "Number of items in inventory: " << numItems << endl << endl;
+    cout << endl << "Number of items in inventory: " << numItems << endl << endl;
 } // displayInventory()
 
 //----------------------------------------------------------------------------
@@ -1129,7 +1133,7 @@ void proj2_2019_displayInventory(proj2_2019_item inv[], int numItems) {
 void proj2_2019_displayOrder(proj2_2019_order o){
 	cout << "ORDER: " << o.orderNumber << "   " << o.custName << endl;
     proj2_2019_displayList(o.items, o.numItems);
-    cout << "TOTAL              $" << setprecision(2) << setw(6) << right << o.totalPrice << endl << endl;
+    cout << "\nTOTAL              $" << setw(6) << right << o.totalPrice << endl << endl;
 } // displayOrder()
 
 //----------------------------------------------------------------------------
@@ -1138,7 +1142,7 @@ void proj2_2019_displayOrder(proj2_2019_order o){
 // modifies partial aray of orders and LastOrderNumber
 //----------------------------------------------------------------------------
 void proj2_2019_startOrder(proj2_2019_order o[], int & numOrds, int & LastONum){
-    o[numOrds].orderNumber = LastONum++;
+    o[numOrds].orderNumber = LastONum + 1;
     o[numOrds].totalPrice = 0;
     o[numOrds].numItems = 0;
 
@@ -1147,7 +1151,7 @@ void proj2_2019_startOrder(proj2_2019_order o[], int & numOrds, int & LastONum){
     if(cin.peek() == '\n') cin.ignore();
     getline(cin, o[numOrds].custName);
 
-    //LastONum = o[numOrds].orderNumber;
+    LastONum = o[numOrds].orderNumber;
     numOrds++;
 } // startOrder()
 
@@ -1157,7 +1161,11 @@ void proj2_2019_startOrder(proj2_2019_order o[], int & numOrds, int & LastONum){
 // given: inventory partial array
 // true if user chose to quit and false if the order is not done
 //----------------------------------------------------------------------------
-bool proj2_2019_orderItem(proj2_2019_item inv[], proj2_2019_order o, int numInInv){
+bool proj2_2019_orderItem(proj2_2019_item inv[], proj2_2019_order o[], int numOrd, int numInInv){
+    if(o[numOrd-1].numItems >= proj2_2019_MAX_ORDER_ITEMS){
+        cout << "You have reached your maximum amount of items.\n";
+        return true;
+    }
     int numItemInput;
     cout << "Enter an item number: ";
     cin >> numItemInput;
@@ -1170,10 +1178,10 @@ bool proj2_2019_orderItem(proj2_2019_item inv[], proj2_2019_order o, int numInIn
     if(numItemInput == -1){
         return true;
     }
-    o.items[o.numItems] = inv[numItemInput];
-    o.totalPrice += inv[numItemInput].price;
-    cout << inv[numItemInput].description << " added to your basket. Current total is " << o.totalPrice;
-    o.numItems++;
+    o[numOrd-1].items[o[numOrd-1].numItems] = inv[numItemInput];
+    o[numOrd-1].totalPrice = o[numOrd-1].totalPrice + inv[numItemInput].price;
+    cout << inv[numItemInput].description << " added to your basket. Current total is " << o[numOrd-1].totalPrice << endl;
+    o[numOrd-1].numItems++;
 
     return false;
 } // orderItem()
@@ -1184,8 +1192,18 @@ bool proj2_2019_orderItem(proj2_2019_item inv[], proj2_2019_order o, int numInIn
 // given: inventory partial array
 // Adds new order struct to orders partial array
 //----------------------------------------------------------------------------
-void proj2_2019_makeOrder(proj2_2019_item inv[], proj2_2019_order o[], int & lastONum){
-	
+void proj2_2019_makeOrder(proj2_2019_item inv[], proj2_2019_order o[], int numInv, int & lastONum, int & numOrd){
+	if(numOrd >= proj2_2019_MAX_ORDERS){
+        cout << "Sorry, we can not take more orders today.\n";
+        return;
+    }
+    proj2_2019_startOrder(o, numOrd, lastONum);
+    proj2_2019_displayInventory(inv, numInv);
+
+    while(!proj2_2019_orderItem(inv, o, numOrd, numInv)){}
+
+    cout << "\nThank you for your order!\n";
+    proj2_2019_displayOrder(o[numOrd-1]);
 } // makeOrder()
 
 //----------------------------------------------------------------------------
@@ -1194,8 +1212,14 @@ void proj2_2019_makeOrder(proj2_2019_item inv[], proj2_2019_order o[], int & las
 // given: partial array of orders
 // prints list of orders
 //----------------------------------------------------------------------------
-void proj2_2019_listOrders(proj2_2019_order o[]){
-	
+void proj2_2019_listOrders(proj2_2019_order o[], int numOrders){
+	cout << "+-----------------------------------------------------+\n"
+         << "|                        Orders                       |\n"
+         << "+-----------------------------------------------------+\n";
+    for(int i = 0; i < numOrders; i++){
+        proj2_2019_displayOrder(o[i]);
+    }
+    cout << "Total Number of Orders = " << numOrders << endl;
 } // listOrders()
 
 //----------------------------------------------------------------------------
@@ -1204,15 +1228,29 @@ void proj2_2019_listOrders(proj2_2019_order o[]){
 // given: partial array of orders
 // writes orders made to text file
 //----------------------------------------------------------------------------
-void proj2_2019_writeOrders(proj2_2019_order o[]){
-	
+void proj2_2019_writeOrders(proj2_2019_order o[], int numOrders){
+	ofstream f;
+    f.open("orders.txt");
+    if (f.fail()) {
+		cout << "writeFile:: error opening orders.txt\n";
+		return;
+	}
+    f << numOrders << endl;
+    for(int i = 0; i < numOrders; i++){
+        f << o[i].orderNumber << " " << o[i].numItems << " " << o[i].totalPrice << " " << o[i].custName << endl;
+        for(int j = 0; j < o[i].numItems; j++){
+            f << o[i].items[j].prodCode << " " << o[i].items[j].price << " " << o[i].items[j].description << endl;
+        }
+    }
+    f.close();
 } // writeOrders()
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-// Function: Project 2
-// Date: 6/3/24
-// Description: 
+// Function: Project 2 V 2019
+// Date: 6/4/24
+// Description: an application that allows customers to order items from an inventory of products
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void proj2_2019(){
+
     proj2_2019_item inv[proj2_2019_MAX_INV_ITEMS];
     proj2_2019_order orders[proj2_2019_MAX_ORDERS];
     int lastOrderNumber = 0;
@@ -1222,13 +1260,30 @@ void proj2_2019(){
 
     proj2_2019_readInventory(inv, numInv, lastOrderNumber);
     menuOption = proj2_2019_getMenuOption();
-    proj2_2019_makeOrder(inv, orders, lastOrderNumber);
-    proj2_2019_listOrders(orders);
-    proj2_2019_writeOrders(orders);
+    while(menuOption != 'X'){
+        if(menuOption == 'I'){
+            proj2_2019_displayInventory(inv, numInv);
+        }
+        else if(menuOption == 'O'){
+            proj2_2019_makeOrder(inv, orders, numInv, lastOrderNumber, numOrders);
+        }
+        else if(menuOption == 'L'){
+            proj2_2019_listOrders(orders, numOrders);  
+        }
+        menuOption = proj2_2019_getMenuOption();
+    }
 
+    proj2_2019_writeOrders(orders, numOrders);
     return;
-};
-
+}
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Function: Project 2
+// Date: 6/3/24
+// Description: 
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+void proj2_2021(){
+    cout << "This project is currently not available\n";
+}
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Project 3
 // Date: 6/3/24
@@ -1236,7 +1291,7 @@ void proj2_2019(){
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void proj3(){
     cout << "This project is currently not available\n";
-};
+}
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Project 4
@@ -2193,6 +2248,27 @@ void testerMode(){
                 cout << "Invalid input. Returning to program select\n";
             }
         }
+        else if(prog == "proj2"){
+            string verP2 = "";
+            cout << "Select version of project 2 (2019 or 2021): ";
+            cin >> verP2;
+
+            if(verP2 == "2019"){
+                cout << "Loading \"proj2_2019\"...\n";
+                cin.ignore();
+                proj2_2019();
+                cout << "\nEnd of test...\n";
+            }
+            else if(verP2 == "2021"){
+                cout << "Loading \"proj2_2021\"...\n";
+                cin.ignore();
+                proj2_2021();
+                cout << "\nEnd of test...\n";
+            }
+            else{
+                cout << "Invalid input. Returning to program select\n";
+            }
+        }
         else if(prog == "help"){
             cout << "Possible inputs:\n"
                  << "\"help\" - List possible input options\n"
@@ -2205,7 +2281,7 @@ void testerMode(){
                  << "\"lab5\" - Run Lab 5\n"
                  << "\"lab6\" - Run Lab 6\n"
                  << "\"proj1\" - Run Project 1 (2018 or 2021 Edition)\n"
-                 << "\"proj2\" - Run Project 1 (2019 or 2021 Edition)\n";
+                 << "\"proj2\" - Run Project 2 (2019 or 2021 Edition)\n";
         }
         else{
             cout << "Invalid input\n";
