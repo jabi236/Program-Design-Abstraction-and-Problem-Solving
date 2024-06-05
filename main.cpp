@@ -8,6 +8,8 @@
 // TODO: Use OOP to divide most of functions into own files to not have just 1 long messy file
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
+#include "lab8_student.h"
+
 #include <iostream> // needed for cout
 #include <iomanip> // need for setw
 #include <string> // needed for string and getline
@@ -15,7 +17,6 @@
 #include <cmath> // for round
 
 using namespace std; // needed for cout and string
-
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 //                                                               Labs
@@ -797,7 +798,45 @@ void lab7(){
 // Description: 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab8(){
-    cout << "This lab is currently not available\n";
+    lab8_student s;		// create one student object
+
+	// test empty student 
+	cout << "Empty student: \n";
+	s.print();		 
+	cout << "Avg=" << s.getAvg() << endl;
+
+	cout << "\nTesting setName and addScore...\n";
+	s.setName("George");
+	s.addScore(88);
+	s.addScore(77);
+	s.addScore(99);
+	s.addScore(85);
+	s.addScore(75);
+	s.addScore(95);
+	s.addScore(81);
+	s.addScore(91);
+	s.addScore(71);
+	s.addScore(100);
+	s.addScore(50);		// should fail; array is full
+	cout << "\nAll scores added: \n";
+	s.print();
+
+	cout << "\nTesting gets:\n";
+	cout << "Name = " << s.getName() << endl;
+	cout << "Avg  = " << s.getAvg() << endl;
+	cout << "#Scores = " << s.getNumScores() << endl << endl;
+
+	cout << "Test another student object:\n";
+	lab8_student t;		// create another object NOW
+	t.setName("Mary");
+	t.addScore(88);
+	t.addScore(99);
+	t.addScore(77);
+	t.print();
+	cout << endl;
+
+	//system("pause");
+	return;
 };
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1368,6 +1407,7 @@ void proj2_2019_writeOrders(proj2_2019_order o[], int numOrders){
     }
     f.close();
 } // writeOrders()
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Project 2 V 2019
 // Date: 6/4/24
@@ -2404,6 +2444,7 @@ void testerMode(){
                  << "\"lab4\" - Run Lab 4\n"
                  << "\"lab5\" - Run Lab 5\n"
                  << "\"lab6\" - Run Lab 6\n"
+                 << "\"lab7\" - Run Lab 7\n"
                  << "\"proj1\" - Run Project 1 (2018 or 2021 Edition)\n"
                  << "\"proj2\" - Run Project 2 (2019 or 2021 Edition)\n";
         }
