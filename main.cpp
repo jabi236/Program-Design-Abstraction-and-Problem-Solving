@@ -28,7 +28,7 @@ using namespace std; // needed for cout and string
 void helloworld(){
     cout << "Hello World!\n";
     //system("pause");
-};
+} // helloworld()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 1
@@ -42,7 +42,7 @@ void lab1(){
     cin >> name; // get input
 
     cout << "Greetings " << name << "!\n";
-};
+} // lab1()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 2 2018
@@ -112,7 +112,7 @@ void lab2_2018(){
     else{
         cout << "That is not on the list\n";
     }
-};
+}// lab2_2018()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 2 2021
@@ -204,7 +204,7 @@ void lab2_2021(){
             cout << "Water at a temperature of " << temp << " is in a Gas state.";
         }
     }
-};
+}// lab2_2021()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 3 2018
@@ -254,7 +254,7 @@ void lab3_2018(){
     cout << "The Highs: max = " << highest << " avg = " << avgHigh << endl
          << "The Lows:  min = " << lowest << " avg = " << avgLow << endl
          << "Number of days below freezing: " << fDays << endl;
-};
+}// lab3_2018()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 3 2021
@@ -273,6 +273,7 @@ void lab3_2021(){
 
     string sName = "";
     cout << "Enter the students name: ";
+    if (cin.peek() == '\n') cin.ignore();
     getline(cin, sName);
 
     // write file header with name given
@@ -335,7 +336,7 @@ void lab3_2021(){
     f.close();
 
     cout << "Grade report written to " << fn << endl;
-};
+}// lab3_2021()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 4
@@ -404,7 +405,7 @@ void lab4(){
     cout << setw(20) << left << "Lowest Average:" << minQ << endl;
 
     return;
-};
+} // lab4()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 //                                                              Lab 5
@@ -418,7 +419,8 @@ struct lab5_student{
     float avg;
     int scores[LAB5_MAX_SCORES];
     int numScores;
-};
+}; // student object
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Read
 // Date: 5/23/24
@@ -448,7 +450,7 @@ void lab5_read(lab5_student *s, int & numStu, string filename){
     f.close();
 
     return;
-};
+} // read()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Calculate Averages
@@ -464,7 +466,7 @@ void lab5_calcAverages(lab5_student *s, int numStu){
         s[i].avg = totScores / s[i].numScores;
     }
     return;
-};
+} // calcAverages()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Print
@@ -482,7 +484,7 @@ void lab5_print(lab5_student *s, int numStu){
         }
     }
     cout << endl;
-};
+} // print()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Search
@@ -499,7 +501,8 @@ int lab5_search(lab5_student *s, int numStu, string fname, string lname){
     }
 
     return found;
-};
+} // search()
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 5
 // Date: 5/16/24
@@ -530,12 +533,12 @@ void lab5(){
     }
 
     return;
-};
+} // lab5()
 
-struct lab6_frac{ // a fraction structure
+struct lab6_frac{
     int num; // numerator
     int den; // denominator
-};
+}; // a fraction object
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: AskFraction
@@ -555,7 +558,7 @@ lab6_frac lab6_AskFraction(){
     }
 
     return f;
-}
+} // AskFraction()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: DecimalValue
@@ -568,7 +571,7 @@ float lab6_DecimalValue(lab6_frac f){
     float den = f.den; // ints cannot be calculated together to get a float
     dVal = num / den;
     return dVal;
-}
+} // DecimalValue()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: PrintFraction
@@ -580,7 +583,7 @@ void lab6_PrintFraction(lab6_frac f){
          << "----  = " << setprecision(6) << setw(10) << left << lab6_DecimalValue(f) << endl
          << setw(3) << right << f.den << endl;
     return;
-}
+} // PrintFraction()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Multiply
@@ -592,7 +595,7 @@ lab6_frac lab6_Multiply(lab6_frac a, lab6_frac b){
     c.num = a.num * b.num;
     c.den = a.den * b.den;
     return c;
-}
+} // Multiply()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Add
@@ -611,7 +614,7 @@ lab6_frac lab6_Add(lab6_frac a, lab6_frac b){
     }
 
     return c;
-}
+} // Add()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Simplify
@@ -663,12 +666,13 @@ void lab6(){
 struct lab7_employee {
         string first, last;
         double hours, rate, gross, state, fed, net;
-};
+}; // employee object
 
 // FEDERAL TAX BRACKETS: in order low to high
 struct lab7_bracket {
         double max, rate;
-};
+}; // bracket object()
+
 const int lab7_NUM_BRACKETS = 4;
 const lab7_bracket brackets[lab7_NUM_BRACKETS] =
                 {       {400,0.01},             // max gross, rate for bracket 0
@@ -704,7 +708,7 @@ void lab7_readData(lab7_employee e[], int & numE){
     }
 
     f.close();
-}
+} // readData()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: calcData
@@ -728,7 +732,7 @@ double lab7_calcData(double gross){
     }
 
     return fed;
-}
+} // calcData()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: calcPay
@@ -740,7 +744,7 @@ void lab7_calcPay(lab7_employee & e){
     e.state = round(100 * e.gross * lab7_STATE_TAX_RATE)/100;
     e.fed = round(100 * e.gross * lab7_calcData(e.gross))/100;
     e.net = e.gross - e.state - e.fed;
-}
+} // calcPay()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: writeData
@@ -748,20 +752,16 @@ void lab7_calcPay(lab7_employee & e){
 // Description: outputs calculated pay outs to new file
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab7_writeData(lab7_employee e[], int numE){
-
     if(numE == 0){
         return;
     }
-
     ofstream f;
-
     string fn;
 
     cout << setw(24) << left << "Enter output file name:";
     cin >> fn;
 
     f.open(fn);
-
     if(f.fail()){
         cout << "Failed to open " << fn << endl;
         return;
@@ -776,7 +776,8 @@ void lab7_writeData(lab7_employee e[], int numE){
     }
 
     f.close();
-}
+} // writeData()
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 7
 // Date: 5/16/24
@@ -790,12 +791,12 @@ void lab7(){
             lab7_calcPay(e[i]);
     lab7_writeData(e, numEmps);
     return;
-}
+} // lab7()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 8
-// Date: 5/16/24
-// Description: 
+// Date: 6/5/24
+// Description: Test Student Class. Add student name and scores, and get averages of those scores
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab8(){
     lab8_student s;		// create one student object
@@ -835,9 +836,8 @@ void lab8(){
 	t.print();
 	cout << endl;
 
-	//system("pause");
 	return;
-};
+} // lab8()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 9
@@ -846,7 +846,7 @@ void lab8(){
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab9(){
     cout << "This lab is currently not available\n";
-};
+} // lab9()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 10
@@ -855,7 +855,8 @@ void lab9(){
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab10(){
     cout << "This lab is currently not available\n";
-};
+} // lab10()
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 //                                                             Projects
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -953,7 +954,7 @@ void proj1_2018(){
     cout << "Shutting down...bye!";
 
     return;
-};
+} // proj1_2018()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 //                                                                              Project 1 - 2021
@@ -992,6 +993,7 @@ void proj1_2021(){
 
     // get user input of report date and number of employees
     cout << setw(27)<< left << "Enter date for report:";
+    if (cin.peek() == '\n') cin.ignore();
     getline(cin, rDate);
     cout << setw(27) << left << "Enter number of employees: ";
     cin >> numEmp;
@@ -1145,7 +1147,7 @@ void proj1_2021(){
     cout << endl <<"Payroll report written to file.\n";
 
     return;
-};
+} // proj1_2021
 
 const int proj2_2019_READ_ERROR    = -1;
 const int proj2_2019_MAX_INV_ITEMS = 10;
@@ -1155,7 +1157,7 @@ struct proj2_2019_item {
 	string prodCode;		// product code: length 12, no spaces
 	string description;		// product description: max length 28, has spaces
 	double price;			// price of the product, max 999.99
-};
+}; // item object
 
 const int proj2_2019_MAX_ORDERS = 10;
 
@@ -1167,7 +1169,7 @@ struct proj2_2019_order {
 	double totalPrice;		// price of all items purchased
 	proj2_2019_item items[proj2_2019_MAX_ORDER_ITEMS];	// list of items purchased
 	int numItems;			// number of items purchased
-};
+}; // order object
 
 //----------------------------------------------------------------------------
 //                                  readInventory
@@ -1194,7 +1196,8 @@ void proj2_2019_readInventory(proj2_2019_item inv[], int & numberOfInvItems, int
 	for (int i = 0; i < numberOfInvItems; i++) {
 		f >> inv[i].prodCode >> inv[i].price;
 		f.ignore(); // finished reading integer, getline() on string is next
-		getline(f, inv[i].description);
+		if (cin.peek() == '\n') cin.ignore();
+        getline(f, inv[i].description);
 	}
 	f.close();
 } // readInventory()
@@ -1447,7 +1450,8 @@ void proj2_2019(){
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void proj2_2021(){
     cout << "This project is currently not available\n";
-}
+} // proj2_2021()
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Project 3
 // Date: 6/3/24
@@ -1455,7 +1459,7 @@ void proj2_2021(){
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void proj3(){
     cout << "This project is currently not available\n";
-}
+} // proj3()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Project 4
@@ -1464,7 +1468,7 @@ void proj3(){
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void proj4(){
     cout << "This project is currently not available\n";
-};
+} //proj4()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 //                                                           Tutor Levels
@@ -1483,6 +1487,7 @@ int levelone(int & lives, int & warns){
     // Question 1
     string answer1 = "";
     cout << "Question 1 - What statement lets you include the library for cout? ";
+    if (cin.peek() == '\n') cin.ignore();
     getline(cin, answer1);
     
     // Loop until answer is incorrect or user has run out of lives
@@ -1514,6 +1519,7 @@ int levelone(int & lives, int & warns){
             return lives, warns;
         }
         cout << "Question 1 - What statement lets you include the library for cout? ";
+        if (cin.peek() == '\n') cin.ignore();
         getline(cin, answer1);
     }
 
@@ -1522,6 +1528,7 @@ int levelone(int & lives, int & warns){
     // Question 2
     string answer2 = "";
     cout << "Question 2 - What statement makes it so you don't have to write \"std::\" before statements like cout? ";
+    if (cin.peek() == '\n') cin.ignore();
     getline(cin, answer2);
     while(answer2 != "using namespace std\;" && lives != 0){
         if(warns != 0){
@@ -1551,6 +1558,7 @@ int levelone(int & lives, int & warns){
             return lives, warns;
         }   
         cout << "Question 2 - What statement makes it so you don't have to write \"std::\" before statements like cout? ";
+        if (cin.peek() == '\n') cin.ignore();
         getline(cin, answer2);
     }
 
@@ -1614,7 +1622,7 @@ int levelone(int & lives, int & warns){
         cout << "You gained a life for not missing a question!\n";
     }
     return lives, warns;
-};
+} // levelone()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Author: James Birch
@@ -1634,6 +1642,7 @@ int leveltwo(int & lives, int & warns){
     // Question 1
     string answer1 = "";
     cout << "Question 1 - ? ";
+    if (cin.peek() == '\n') cin.ignore();
     getline(cin, answer1);
     
     // Loop until answer is incorrect or user has run out of lives
@@ -1665,6 +1674,7 @@ int leveltwo(int & lives, int & warns){
             return lives, warns;
         }
         cout << "Question 1 - ? ";
+        if (cin.peek() == '\n') cin.ignore();
         getline(cin, answer1);
     }
 
@@ -1673,6 +1683,7 @@ int leveltwo(int & lives, int & warns){
     // Question 2
     string answer2 = "";
     cout << "Question 2 - ? ";
+    if (cin.peek() == '\n') cin.ignore();
     getline(cin, answer2);
     while(answer2 != " " && lives != 0){
         if(warns != 0){
@@ -1702,6 +1713,7 @@ int leveltwo(int & lives, int & warns){
             return lives, warns;
         }   
         cout << "Question 2 - ? ";
+        if (cin.peek() == '\n') cin.ignore();
         getline(cin, answer2);
     }
 
@@ -1765,7 +1777,7 @@ int leveltwo(int & lives, int & warns){
         cout << "You gained a life for not missing a question!\n";
     }
     return lives, warns;
-};
+} // leveltwo()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Author: James Birch
@@ -1777,7 +1789,7 @@ int levelthree(int & lives, int & warns){
     // temp return
     cout << "Level 3 is currently not available.\n";
     return lives, warns;
-};
+} // levelthree()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Author: James Birch
@@ -1797,6 +1809,7 @@ int levelbossone(int & lives, int & warns){
     // Question 1
     string answer1 = "";
     cout << "Question 1 - ? ";
+    if (cin.peek() == '\n') cin.ignore();
     getline(cin, answer1);
     
     // Loop until answer is incorrect or user has run out of lives
@@ -1828,6 +1841,7 @@ int levelbossone(int & lives, int & warns){
             return lives, warns;
         }
         cout << "Question 1 - ? ";
+        if (cin.peek() == '\n') cin.ignore();
         getline(cin, answer1);
     }
 
@@ -1836,6 +1850,7 @@ int levelbossone(int & lives, int & warns){
     // Question 2
     string answer2 = "";
     cout << "Question 2 - ? ";
+    if (cin.peek() == '\n') cin.ignore();
     getline(cin, answer2);
     while(answer2 != " " && lives != 0){
         if(warns != 0){
@@ -1865,6 +1880,7 @@ int levelbossone(int & lives, int & warns){
             return lives, warns;
         }   
         cout << "Question 2 - ? ";
+        if (cin.peek() == '\n') cin.ignore();
         getline(cin, answer2);
     }
 
@@ -1934,7 +1950,7 @@ int levelbossone(int & lives, int & warns){
         cout << "You gained two lives for not missing a question in a boss round!\n";
     }
     return lives, warns;
-};
+}// levelbossone()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Author: James Birch
@@ -1954,6 +1970,7 @@ int levelfour(int & lives, int & warns){
     // Question 1
     string answer1 = "";
     cout << "Question 1 - ? ";
+    if (cin.peek() == '\n') cin.ignore();
     getline(cin, answer1);
     
     // Loop until answer is incorrect or user has run out of lives
@@ -1985,6 +2002,7 @@ int levelfour(int & lives, int & warns){
             return lives, warns;
         }
         cout << "Question 1 - ? ";
+        if (cin.peek() == '\n') cin.ignore();
         getline(cin, answer1);
     }
 
@@ -1993,6 +2011,7 @@ int levelfour(int & lives, int & warns){
     // Question 2
     string answer2 = "";
     cout << "Question 2 - ? ";
+    if (cin.peek() == '\n') cin.ignore();
     getline(cin, answer2);
     while(answer2 != " " && lives != 0){
         if(warns != 0){
@@ -2022,6 +2041,7 @@ int levelfour(int & lives, int & warns){
             return lives, warns;
         }   
         cout << "Question 2 - ? ";
+        if (cin.peek() == '\n') cin.ignore();
         getline(cin, answer2);
     }
 
@@ -2085,7 +2105,7 @@ int levelfour(int & lives, int & warns){
         cout << "You gained a life for not missing a question!\n";
     }
     return lives, warns;
-};
+} // levelfour()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Author: James Birch
@@ -2097,7 +2117,7 @@ int levelfive(int & lives, int & warns){
     // temp return
     cout << "Level 5 is currently not available.\n";
     return lives, warns;
-};
+} // levelfive()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Author: James Birch
@@ -2110,7 +2130,7 @@ int levelsix(int & lives, int & warns){
     cout << "Level 6 is currently not available.\n";
     return lives, warns;
 
-};
+} //levelsix()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Author: James Birch
@@ -2122,7 +2142,7 @@ int levelbosstwo(int & lives, int & warns){
     // temp return
     cout << "Level ★★ is currently not available.\n";
     return lives, warns;
-};
+} // levelbosstwo()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Author: James Birch
@@ -2133,7 +2153,7 @@ int levelbosstwo(int & lives, int & warns){
 int levelseven(int & lives, int & warns){
     cout << "Level 7 is currently not available.\n";
     return lives, warns;
-};
+} //levelseven()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Author: James Birch
@@ -2144,7 +2164,7 @@ int levelseven(int & lives, int & warns){
 int leveleight(int & lives, int & warns){
     cout << "Level 8 is currently not available.\n";
     return lives, warns;
-};
+} // leveleight()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Author: James Birch
@@ -2155,7 +2175,7 @@ int leveleight(int & lives, int & warns){
 int levelnine(int & lives, int & warns){
     cout << "Level 9 is currently not available.\n";
     return lives, warns;
-};
+} // levelnine()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Author: James Birch
@@ -2166,7 +2186,7 @@ int levelnine(int & lives, int & warns){
 int levelten(int & lives, int & warns){
     cout << "Level 10 is currently not available.\n";
     return lives, warns;
-};
+} // levelten()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Author: James Birch
@@ -2178,7 +2198,7 @@ int levelbossthree(int & lives, int & warns){
     // temp return
     cout << "Level ★★★ is currently not available.\n";
     return lives, warns;
-};
+} // levelbossthree()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Author: James Birch
@@ -2190,7 +2210,7 @@ int levelbossfour(int & lives, int & warns){
     // temp return
     cout << "Level ★★★★ is currently not available.\n";
     return lives, warns;
-};
+} // levelbossfour()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 //                                                               Modes
@@ -2200,7 +2220,6 @@ int levelbossfour(int & lives, int & warns){
 // Description: Ask questions to test knowledge on programming basics
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void tutorMode(){
-
     string diff_input;
     int lives = 0;
     int warnings = 0;
@@ -2233,46 +2252,32 @@ void tutorMode(){
         warnings = 0;
     }
 
-    cin.ignore();
     lives, warnings = levelone(lives, warnings);
 
-    //cin.ignore();
     //lives, warnings = leveltwo(lives, warnings);
 
-    //cin.ignore();
     //lives, warnings = levelthree(lives, warnings);
 
-    //cin.ignore();
     //lives, warnings = levelfour(lives, warnings);
 
-    //cin.ignore();
     //lives, warnings = levelbossone(lives, warnings);
 
-    //cin.ignore();
     //lives, warnings = levelfive(lives, warnings);
 
-    //cin.ignore();
     //lives, warnings = levelsix(lives, warnings);
 
-    //cin.ignore();
     //lives, warnings = levelbosstwo(lives, warnings);
 
-    //cin.ignore();
     //lives, warnings = levelseven(lives, warnings);
 
-    //cin.ignore();
     //lives, warnings = leveleight(lives, warnings);
 
-    //cin.ignore();
     //lives, warnings = levelnine(lives, warnings);
 
-    //cin.ignore();
     //lives, warnings = levelten(lives, warnings);
 
-    //cin.ignore();
     //lives, warnings = levelbossthree(lives, warnings);
 
-    //cin.ignore();
     //lives, warnings = levelbossfour(lives, warnings);
 
     if(lives == 0){
@@ -2284,7 +2289,8 @@ void tutorMode(){
          << "Exiting Tutor Mode\n";
 
     return;
-};
+} // tutorMode()
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Tutor Mode
 // Date: 5/22/24
@@ -2296,13 +2302,11 @@ void testerMode(){
     cin >> prog;
     while(prog != "exit"){
         if(prog == "helloworld"){
-            cin.ignore();
             cout << "Loading \"helloworld\"\n";
             helloworld();
             cout << "\nEnd of test...\n";
         }
         else if(prog == "lab1"){
-            cin.ignore();
             cout << "Loading \"lab1\"...\n";
             lab1();
             cout << "\nEnd of test...\n";
@@ -2314,13 +2318,11 @@ void testerMode(){
 
             if(ver2 == "2018"){
                 cout << "Loading \"lab2_2018\"...\n";
-                cin.ignore();
                 lab2_2018();
                 cout << "\nEnd of test...\n";
             }
             else if(ver2 == "2021"){
                 cout << "Loading \"lab2_2021\"...\n";
-                cin.ignore();
                 lab2_2021();
                 cout << "\nEnd of test...\n";
             }
@@ -2335,13 +2337,11 @@ void testerMode(){
 
             if(ver3 == "2018"){
                 cout << "Loading \"lab3_2018\"...\n";
-                cin.ignore();
                 lab3_2018();
                 cout << "\nEnd of test...\n";
             }
             else if(ver3 == "2021"){
                 cout << "Loading \"lab3_2021\"...\n";
-                cin.ignore();
                 lab3_2021();
                 cout << "\nEnd of test...\n";
             }
@@ -2351,43 +2351,36 @@ void testerMode(){
         }
         else if(prog == "lab4"){
             cout << "Loading \"lab4\"...\n";
-            cin.ignore();
             lab4();
             cout << "\nEnd of test...\n";
         }
         else if(prog == "lab5"){
             cout << "Loading \"lab5\"...\n";
-            cin.ignore();
             lab5();
             cout << "\nEnd of test...\n";
         }
         else if(prog == "lab6"){
             cout << "Loading \"lab6\"...\n";
-            cin.ignore();
             lab6();
             cout << "\nEnd of test...\n";
         }
         else if(prog == "lab7"){
             cout << "Loading \"lab7\"...\n";
-            cin.ignore();
             lab7();
             cout << "\nEnd of test...\n";
         }
         else if(prog == "lab8"){
             cout << "Loading \"lab8\"...\n";
-            cin.ignore();
             lab8();
             cout << "\nEnd of test...\n";
         }
         else if(prog == "lab9"){
             cout << "Loading \"lab9\"...\n";
-            cin.ignore();
             lab9();
             cout << "\nEnd of test...\n";
         }
         else if(prog == "lab10"){
             cout << "Loading \"lab10\"...\n";
-            cin.ignore();
             lab10();
             cout << "\nEnd of test...\n";
         }
@@ -2398,13 +2391,11 @@ void testerMode(){
 
             if(verP1 == "2018"){
                 cout << "Loading \"proj1_2018\"...\n";
-                cin.ignore();
                 proj1_2018();
                 cout << "\nEnd of test...\n";
             }
             else if(verP1 == "2021"){
                 cout << "Loading \"proj1_2021\"...\n";
-                cin.ignore();
                 proj1_2021();
                 cout << "\nEnd of test...\n";
             }
@@ -2419,13 +2410,11 @@ void testerMode(){
 
             if(verP2 == "2019"){
                 cout << "Loading \"proj2_2019\"...\n";
-                cin.ignore();
                 proj2_2019();
                 cout << "\nEnd of test...\n";
             }
             else if(verP2 == "2021"){
                 cout << "Loading \"proj2_2021\"...\n";
-                cin.ignore();
                 proj2_2021();
                 cout << "\nEnd of test...\n";
             }
@@ -2445,6 +2434,7 @@ void testerMode(){
                  << "\"lab5\" - Run Lab 5\n"
                  << "\"lab6\" - Run Lab 6\n"
                  << "\"lab7\" - Run Lab 7\n"
+                 << "\"lab8\" - Run Lab 8\n"
                  << "\"proj1\" - Run Project 1 (2018 or 2021 Edition)\n"
                  << "\"proj2\" - Run Project 2 (2019 or 2021 Edition)\n";
         }
@@ -2456,7 +2446,7 @@ void testerMode(){
     }
     cout << "Exiting tester mode...\n";
     return;
-};
+} // testerMode()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Program Selection
@@ -2491,7 +2481,7 @@ void modeSelect(){
     }
     cout << "Ending Program...\n";
     return;
-};
+} // modeSelect()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Main
@@ -2503,4 +2493,4 @@ int main(){
     modeSelect();
 
     return 0;
-};
+} // main()
