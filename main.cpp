@@ -9,6 +9,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
 #include "lab8_student.h"
+#include "lab9_buddyList.h"
 
 #include <iostream> // needed for cout
 #include <iomanip> // need for setw
@@ -839,13 +840,55 @@ void lab8(){
 	return;
 } // lab8()
 
+char lab9_askMenuOpt() {
+	char opt;
+	string input;
+
+	cout << "\n===== Buddy List Pro =====\n";
+	cout << "A - Add buddy \n";
+	cout << "D - Delete buddy\n";
+	cout << "P - Print list\n";
+	cout << "S - Sort list\n";
+	cout << "X - Exit\n";
+	cout << "===> ";
+	cin >> input;
+	opt = toupper(input[0]);
+	return opt;
+}
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 9
 // Date: 5/16/24
 // Description: 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab9(){
-    cout << "This lab is currently not available\n";
+    {
+		lab9_buddyList b;
+		string first, last, phone;
+		char opt;
+		do {
+			opt = lab9_askMenuOpt();
+			switch (opt) {
+			case 'A':
+				cout << "Enter buddy's First Last Phone: ";
+				cin >> first >> last >> phone;
+				b.add(first, last, phone);
+				cout << "Buddy added!\n\n";
+				break;
+			case 'D': 
+				cout << "Coming soon!\n";
+				break;
+			case 'S': 
+				cout << "Coming soon!\n";
+				break;
+			case 'P': b.print(); break;
+			case 'X': break;
+			default: cout << "Invalid option!\n";
+			}
+		} while (opt != 'X');
+	}
+	system("pause");
+	return;
 } // lab9()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
