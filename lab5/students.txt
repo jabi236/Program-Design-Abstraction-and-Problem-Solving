@@ -1,0 +1,6 @@
+5 4
+Sally Smith 88 77 99 66
+Adam Ant 85 75 95 65
+Betty Boop 96 94 92 90
+Freddy Krueger 66 77 55 44
+Pepe LePew 87 77 67 57
