@@ -3,6 +3,10 @@
         "iostream": "cpp",
         "xstring": "cpp",
         "istream": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "system_error": "cpp",
+        "xlocale": "cpp",
+        "string": "cpp",
+        "ios": "cpp"
     }
 }
