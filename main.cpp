@@ -11,6 +11,11 @@
 #include "lab8_student.h"
 #include "lab9_buddyList.h"
 #include "lab10_color.h"
+//#include "proj3_2018_catalog.h"
+//#include "proj3_2018_studentList.h"
+//#include "proj3_2018_schedList.h"
+//#include "proj3_2018_menu.h"
+//#include "proj3_2018_userint.h"
 
 #include <iostream> // needed for cout
 #include <iomanip> // need for setw
@@ -859,7 +864,7 @@ char lab9_askMenuOpt() {
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Lab 9
-// Date: 5/16/24
+// Date: 6/18/24
 // Description: 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void lab9(){
@@ -1523,21 +1528,62 @@ void proj2_2021(){
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Function: Project 3
-// Date: 6/3/24
-// Description: 
+// Date: 6/24/24
+// Description: an application that will allow the user to register students for courses at a university
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-void proj3(){
-    cout << "This project is currently not available\n";
+void proj3_2018(){
+    /*
+    // create the app and start it!
+	userint x;
+	x.go();
+	system("pause");
+	return;
+    */
 } // proj3()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-// Function: Project 4
-// Date: 6/3/24
-// Description: 
+// Function: Project 4 (2018 Version)
+// Date: 6/25/24
+// Description: added sort and delete features to lab 9
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-void proj4(){
-    cout << "This project is currently not available\n";
-} //proj4()
+void proj4_2018(){
+    {
+		lab9_buddyList b;
+		string first, last, phone;
+		char opt;
+		int rc;
+		b.read();
+
+		do {
+			opt = lab9_askMenuOpt();
+			switch (opt) {
+			case 'A':
+				cout << "Enter buddy's First Last Phone: ";
+				cin >> first >> last >> phone;
+				b.add(first, last, phone);
+				cout << "Buddy added!\n\n";
+				break;
+			case 'D': 
+				cout << "Enter buddy's First Last: ";
+				cin >> first >> last;
+				rc = b.drop(first, last);
+				if (rc == 0)
+					cout << "Buddy dropped!\n\n";
+				else
+					cout << "No buddy with that name!\n";
+				break;
+			case 'S': 
+				b.sort();
+				cout << "List sorted!\n";
+				break;
+			case 'P': b.print(); break;
+			case 'X': break;
+			default: cout << "Invalid option!\n";
+			}
+		} while (opt != 'X');
+	}
+	return;
+} // proj4()
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 //                                                           Tutor Levels
@@ -2491,6 +2537,40 @@ void testerMode(){
                 cout << "Invalid input. Returning to program select\n";
             }
         }
+        else if(prog == "proj3"){
+            string verP3 = "";
+            cout << "Select version of project 3 (2018 or other version): ";
+            cin >> verP3;
+
+            if(verP3 == "2018"){
+                cout << "Loading \"proj3_2018\"...\n";
+                proj3_2018();
+                cout << "\nEnd of test...\n";
+            }
+            //else if(verP3 == "2024"){
+                
+            //}
+            else{
+                cout << "Invalid input. Returning to program select\n";
+            }
+        }
+        else if(prog == "proj4"){
+            string verP4 = "";
+            cout << "Select version of project 4 (2018 or other version): ";
+            cin >> verP4;
+
+            if(verP4 == "2018"){
+                cout << "Loading \"proj4_2018\"...\n";
+                proj4_2018();
+                cout << "\nEnd of test...\n";
+            }
+            //else if(verP4 == "2024"){
+                
+            //}
+            else{
+                cout << "Invalid input. Returning to program select\n";
+            }
+        }
         else if(prog == "help"){
             cout << "Possible inputs:\n"
                  << "\"help\" - List possible input options\n"
@@ -2505,8 +2585,11 @@ void testerMode(){
                  << "\"lab7\" - Run Lab 7\n"
                  << "\"lab8\" - Run Lab 8\n"
                  << "\"lab9\" - Run Lab 9\n"
+                 << "\"lab9\" - Run Lab 10\n"
                  << "\"proj1\" - Run Project 1 (2018 or 2021 Edition)\n"
-                 << "\"proj2\" - Run Project 2 (2019 or 2021 Edition)\n";
+                 << "\"proj2\" - Run Project 2 (2019 or 2021 Edition)\n"
+                 << "\"proj3\" - Run Project 3 (2018 or other Edition)\n"
+                 << "\"proj4\" - Run Project 4 (2018 or other Edition)\n";
         }
         else{
             cout << "Invalid input\n";
